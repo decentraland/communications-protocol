@@ -1,6 +1,6 @@
 {
   "name": "dcl-comm-protocol",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "build": "tsc && cp src/comm_pb.* dist"
   },
