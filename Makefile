@@ -1,8 +1,10 @@
+PROTOC ?= protoc
+
 proto:
 	${PROTOC} \
-		--plugin="protoc-gen-ts=./node_modules/ts-protoc-gen/bin/protoc-gen-ts" \
-		--js_out=import_style=commonjs,binary:. \
-        --ts_out=. \
-       ./src/*.proto
+		--js_out=import_style=commonjs,binary:js \
+		--go_out=go \
+        --ts_out=js \
+       ./worldcomm.proto
 
 .PHONY: proto

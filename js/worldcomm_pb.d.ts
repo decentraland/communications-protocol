@@ -1,5 +1,5 @@
 // package: 
-// file: src/comm.proto
+// file: worldcomm.proto
 
 import * as jspb from "google-protobuf";
 
