@@ -18,6 +18,7 @@ goog.exportSymbol('proto.FlowStatus', null, global);
 goog.exportSymbol('proto.FlowStatusMessage', null, global);
 goog.exportSymbol('proto.GenericMessage', null, global);
 goog.exportSymbol('proto.MessageType', null, global);
+goog.exportSymbol('proto.PingMessage', null, global);
 goog.exportSymbol('proto.PositionMessage', null, global);
 goog.exportSymbol('proto.ProfileMessage', null, global);
 
@@ -245,7 +246,7 @@ proto.PositionMessage.toObject = function(includeInstance, msg) {
     rotationY: +jspb.Message.getFieldWithDefault(msg, 7, 0.0),
     rotationZ: +jspb.Message.getFieldWithDefault(msg, 8, 0.0),
     rotationW: +jspb.Message.getFieldWithDefault(msg, 9, 0.0),
-    peerId: jspb.Message.getFieldWithDefault(msg, 10, "")
+    alias: jspb.Message.getFieldWithDefault(msg, 10, 0)
   };
 
   if (includeInstance) {
@@ -319,8 +320,8 @@ proto.PositionMessage.deserializeBinaryFromReader = function(msg, reader) {
       msg.setRotationW(value);
       break;
     case 10:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setPeerId(value);
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setAlias(value);
       break;
     default:
       reader.skipField();
@@ -414,9 +415,9 @@ proto.PositionMessage.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getPeerId();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getAlias();
+  if (f !== 0) {
+    writer.writeUint32(
       10,
       f
     );
@@ -560,17 +561,17 @@ proto.PositionMessage.prototype.setRotationW = function(value) {
 
 
 /**
- * optional string peer_id = 10;
- * @return {string}
+ * optional uint32 alias = 10;
+ * @return {number}
  */
-proto.PositionMessage.prototype.getPeerId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
+proto.PositionMessage.prototype.getAlias = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 10, 0));
 };
 
 
-/** @param {string} value */
-proto.PositionMessage.prototype.setPeerId = function(value) {
-  jspb.Message.setProto3StringField(this, 10, value);
+/** @param {number} value */
+proto.PositionMessage.prototype.setAlias = function(value) {
+  jspb.Message.setProto3IntField(this, 10, value);
 };
 
 
@@ -628,7 +629,8 @@ proto.ProfileMessage.toObject = function(includeInstance, msg) {
     avatarType: jspb.Message.getFieldWithDefault(msg, 5, ""),
     displayName: jspb.Message.getFieldWithDefault(msg, 6, ""),
     peerId: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    publicKey: jspb.Message.getFieldWithDefault(msg, 8, "")
+    alias: jspb.Message.getFieldWithDefault(msg, 8, 0),
+    publicKey: jspb.Message.getFieldWithDefault(msg, 9, "")
   };
 
   if (includeInstance) {
@@ -694,6 +696,10 @@ proto.ProfileMessage.deserializeBinaryFromReader = function(msg, reader) {
       msg.setPeerId(value);
       break;
     case 8:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setAlias(value);
+      break;
+    case 9:
       var value = /** @type {string} */ (reader.readString());
       msg.setPublicKey(value);
       break;
@@ -775,10 +781,17 @@ proto.ProfileMessage.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
+  f = message.getAlias();
+  if (f !== 0) {
+    writer.writeUint32(
+      8,
+      f
+    );
+  }
   f = message.getPublicKey();
   if (f.length > 0) {
     writer.writeString(
-      8,
+      9,
       f
     );
   }
@@ -891,17 +904,32 @@ proto.ProfileMessage.prototype.setPeerId = function(value) {
 
 
 /**
- * optional string public_key = 8;
+ * optional uint32 alias = 8;
+ * @return {number}
+ */
+proto.ProfileMessage.prototype.getAlias = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
+};
+
+
+/** @param {number} value */
+proto.ProfileMessage.prototype.setAlias = function(value) {
+  jspb.Message.setProto3IntField(this, 8, value);
+};
+
+
+/**
+ * optional string public_key = 9;
  * @return {string}
  */
 proto.ProfileMessage.prototype.getPublicKey = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
 };
 
 
 /** @param {string} value */
 proto.ProfileMessage.prototype.setPublicKey = function(value) {
-  jspb.Message.setProto3StringField(this, 8, value);
+  jspb.Message.setProto3StringField(this, 9, value);
 };
 
 
@@ -958,7 +986,7 @@ proto.ChatMessage.toObject = function(includeInstance, msg) {
     positionX: +jspb.Message.getFieldWithDefault(msg, 4, 0.0),
     positionZ: +jspb.Message.getFieldWithDefault(msg, 5, 0.0),
     text: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    peerId: jspb.Message.getFieldWithDefault(msg, 7, "")
+    alias: jspb.Message.getFieldWithDefault(msg, 7, 0)
   };
 
   if (includeInstance) {
@@ -1020,8 +1048,8 @@ proto.ChatMessage.deserializeBinaryFromReader = function(msg, reader) {
       msg.setText(value);
       break;
     case 7:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setPeerId(value);
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setAlias(value);
       break;
     default:
       reader.skipField();
@@ -1094,9 +1122,9 @@ proto.ChatMessage.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getPeerId();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getAlias();
+  if (f !== 0) {
+    writer.writeUint32(
       7,
       f
     );
@@ -1195,17 +1223,17 @@ proto.ChatMessage.prototype.setText = function(value) {
 
 
 /**
- * optional string peer_id = 7;
- * @return {string}
+ * optional uint32 alias = 7;
+ * @return {number}
  */
-proto.ChatMessage.prototype.getPeerId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+proto.ChatMessage.prototype.getAlias = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 7, 0));
 };
 
 
-/** @param {string} value */
-proto.ChatMessage.prototype.setPeerId = function(value) {
-  jspb.Message.setProto3StringField(this, 7, value);
+/** @param {number} value */
+proto.ChatMessage.prototype.setAlias = function(value) {
+  jspb.Message.setProto3IntField(this, 7, value);
 };
 
 
@@ -1258,7 +1286,7 @@ proto.ClientDisconnectedFromServerMessage.toObject = function(includeInstance, m
   var f, obj = {
     type: jspb.Message.getFieldWithDefault(msg, 1, 0),
     time: +jspb.Message.getFieldWithDefault(msg, 2, 0.0),
-    peerId: jspb.Message.getFieldWithDefault(msg, 3, "")
+    alias: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -1304,8 +1332,8 @@ proto.ClientDisconnectedFromServerMessage.deserializeBinaryFromReader = function
       msg.setTime(value);
       break;
     case 3:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setPeerId(value);
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setAlias(value);
       break;
     default:
       reader.skipField();
@@ -1350,9 +1378,9 @@ proto.ClientDisconnectedFromServerMessage.serializeBinaryToWriter = function(mes
       f
     );
   }
-  f = message.getPeerId();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getAlias();
+  if (f !== 0) {
+    writer.writeUint32(
       3,
       f
     );
@@ -1391,17 +1419,17 @@ proto.ClientDisconnectedFromServerMessage.prototype.setTime = function(value) {
 
 
 /**
- * optional string peer_id = 3;
- * @return {string}
+ * optional uint32 alias = 3;
+ * @return {number}
  */
-proto.ClientDisconnectedFromServerMessage.prototype.getPeerId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+proto.ClientDisconnectedFromServerMessage.prototype.getAlias = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
 
-/** @param {string} value */
-proto.ClientDisconnectedFromServerMessage.prototype.setPeerId = function(value) {
-  jspb.Message.setProto3StringField(this, 3, value);
+/** @param {number} value */
+proto.ClientDisconnectedFromServerMessage.prototype.setAlias = function(value) {
+  jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
@@ -1770,6 +1798,175 @@ proto.FlowStatusMessage.prototype.setFlowStatus = function(value) {
 };
 
 
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.PingMessage = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+};
+goog.inherits(proto.PingMessage, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.PingMessage.displayName = 'proto.PingMessage';
+}
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.PingMessage.prototype.toObject = function(opt_includeInstance) {
+  return proto.PingMessage.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.PingMessage} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.PingMessage.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    type: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    time: +jspb.Message.getFieldWithDefault(msg, 2, 0.0)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.PingMessage}
+ */
+proto.PingMessage.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.PingMessage;
+  return proto.PingMessage.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.PingMessage} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.PingMessage}
+ */
+proto.PingMessage.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = /** @type {!proto.MessageType} */ (reader.readEnum());
+      msg.setType(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setTime(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.PingMessage.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.PingMessage.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.PingMessage} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.PingMessage.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getType();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      1,
+      f
+    );
+  }
+  f = message.getTime();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      2,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional MessageType type = 1;
+ * @return {!proto.MessageType}
+ */
+proto.PingMessage.prototype.getType = function() {
+  return /** @type {!proto.MessageType} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/** @param {!proto.MessageType} value */
+proto.PingMessage.prototype.setType = function(value) {
+  jspb.Message.setProto3EnumField(this, 1, value);
+};
+
+
+/**
+ * optional double time = 2;
+ * @return {number}
+ */
+proto.PingMessage.prototype.getTime = function() {
+  return /** @type {number} */ (+jspb.Message.getFieldWithDefault(this, 2, 0.0));
+};
+
+
+/** @param {number} value */
+proto.PingMessage.prototype.setTime = function(value) {
+  jspb.Message.setProto3FloatField(this, 2, value);
+};
+
+
 /**
  * @enum {number}
  */
@@ -1780,7 +1977,8 @@ proto.MessageType = {
   CLIENT_DISCONNECTED_FROM_SERVER: 4,
   PROFILE: 5,
   CLOCK_SKEW_DETECTED: 6,
-  FLOW_STATUS: 7
+  FLOW_STATUS: 7,
+  PING: 8
 };
 
 /**

@@ -55,8 +55,8 @@ export class PositionMessage extends jspb.Message {
   getRotationW(): number;
   setRotationW(value: number): void;
 
-  getPeerId(): string;
-  setPeerId(value: string): void;
+  getAlias(): number;
+  setAlias(value: number): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): PositionMessage.AsObject;
@@ -79,7 +79,7 @@ export namespace PositionMessage {
     rotationY: number,
     rotationZ: number,
     rotationW: number,
-    peerId: string,
+    alias: number,
   }
 }
 
@@ -105,6 +105,9 @@ export class ProfileMessage extends jspb.Message {
   getPeerId(): string;
   setPeerId(value: string): void;
 
+  getAlias(): number;
+  setAlias(value: number): void;
+
   getPublicKey(): string;
   setPublicKey(value: string): void;
 
@@ -127,6 +130,7 @@ export namespace ProfileMessage {
     avatarType: string,
     displayName: string,
     peerId: string,
+    alias: number,
     publicKey: string,
   }
 }
@@ -150,8 +154,8 @@ export class ChatMessage extends jspb.Message {
   getText(): string;
   setText(value: string): void;
 
-  getPeerId(): string;
-  setPeerId(value: string): void;
+  getAlias(): number;
+  setAlias(value: number): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ChatMessage.AsObject;
@@ -171,7 +175,7 @@ export namespace ChatMessage {
     positionX: number,
     positionZ: number,
     text: string,
-    peerId: string,
+    alias: number,
   }
 }
 
@@ -182,8 +186,8 @@ export class ClientDisconnectedFromServerMessage extends jspb.Message {
   getTime(): number;
   setTime(value: number): void;
 
-  getPeerId(): string;
-  setPeerId(value: string): void;
+  getAlias(): number;
+  setAlias(value: number): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ClientDisconnectedFromServerMessage.AsObject;
@@ -199,7 +203,7 @@ export namespace ClientDisconnectedFromServerMessage {
   export type AsObject = {
     type: MessageType,
     time: number,
-    peerId: string,
+    alias: number,
   }
 }
 
@@ -255,6 +259,30 @@ export namespace FlowStatusMessage {
   }
 }
 
+export class PingMessage extends jspb.Message {
+  getType(): MessageType;
+  setType(value: MessageType): void;
+
+  getTime(): number;
+  setTime(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): PingMessage.AsObject;
+  static toObject(includeInstance: boolean, msg: PingMessage): PingMessage.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: PingMessage, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): PingMessage;
+  static deserializeBinaryFromReader(message: PingMessage, reader: jspb.BinaryReader): PingMessage;
+}
+
+export namespace PingMessage {
+  export type AsObject = {
+    type: MessageType,
+    time: number,
+  }
+}
+
 export enum MessageType {
   UNKNOWN_MESSAGE_TYPE = 0,
   POSITION = 2,
@@ -263,6 +291,7 @@ export enum MessageType {
   PROFILE = 5,
   CLOCK_SKEW_DETECTED = 6,
   FLOW_STATUS = 7,
+  PING = 8,
 }
 
 export enum FlowStatus {
