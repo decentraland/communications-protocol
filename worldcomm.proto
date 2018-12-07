@@ -9,12 +9,17 @@ enum MessageType {
   CLOCK_SKEW_DETECTED = 6;
   FLOW_STATUS = 7;
   PING = 8;
+  WEBRTC_SUPPORTED = 9;
+  WEBRTC_OFFER = 10;
+  WEBRTC_ANSWER = 11;
+  WEBRTC_ICE_CANDIDATE = 12;
 }
 
 enum FlowStatus {
   UNKNOWN_STATUS = 0;
-  OPEN = 1;
-  CLOSE = 2;
+  CLOSE = 1;
+  OPEN = 100;
+  OPEN_WEBRTC_PREFERRED = 101;
 }
 
 message GenericMessage {
@@ -77,4 +82,27 @@ message FlowStatusMessage {
 message PingMessage {
     MessageType type = 1;
     double time = 2;
+}
+
+message WebRtcSupportedMessage {
+    MessageType type = 1;
+    double time = 2;
+}
+
+message WebRtcOfferMessage {
+    MessageType type = 1;
+    double time = 2;
+    string sdp = 3;
+}
+
+message WebRtcAnswerMessage {
+    MessageType type = 1;
+    double time = 2;
+    string sdp = 3;
+}
+
+message WebRtcIceCandidateMessage {
+    MessageType type = 1;
+    double time = 2;
+    string sdp = 3;
 }
