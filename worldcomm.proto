@@ -1,34 +1,22 @@
 syntax = "proto3";
 
-enum MessageType {
+enum WorldCommMessageType {
   UNKNOWN_MESSAGE_TYPE = 0;
   POSITION = 2;
   CHAT = 3;
   CLIENT_DISCONNECTED_FROM_SERVER = 4;
   PROFILE = 5;
   CLOCK_SKEW_DETECTED = 6;
-  FLOW_STATUS = 7;
   PING = 8;
-  WEBRTC_SUPPORTED = 9;
-  WEBRTC_OFFER = 10;
-  WEBRTC_ANSWER = 11;
-  WEBRTC_ICE_CANDIDATE = 12;
 }
 
-enum FlowStatus {
-  UNKNOWN_STATUS = 0;
-  CLOSE = 1;
-  OPEN = 100;
-  OPEN_WEBRTC_PREFERRED = 101;
-}
-
-message GenericMessage {
-    MessageType type = 1;
+message WorldCommMessage {
+    WorldCommMessageType type = 1;
     double time = 2;
 }
 
 message PositionMessage {
-    MessageType type = 1;
+    WorldCommMessageType type = 1;
     double time = 2;
     float position_x = 3;
     float position_y = 4;
@@ -41,7 +29,7 @@ message PositionMessage {
 }
 
 message ProfileMessage {
-    MessageType type = 1;
+    WorldCommMessageType type = 1;
     double time = 2;
     float position_x = 3;
     float position_z = 4;
@@ -53,7 +41,7 @@ message ProfileMessage {
 }
 
 message ChatMessage {
-    MessageType type = 1;
+    WorldCommMessageType type = 1;
     double time = 2;
     string message_id = 3;
     float position_x = 4;
@@ -63,46 +51,17 @@ message ChatMessage {
 }
 
 message ClientDisconnectedFromServerMessage {
-    MessageType type = 1;
+    WorldCommMessageType type = 1;
     double time = 2;
     uint32 alias = 3;
 }
 
 message ClockSkewMessage {
-    MessageType type = 1;
+    WorldCommMessageType type = 1;
     double time = 2;
-}
-
-message FlowStatusMessage {
-    MessageType type = 1;
-    double time = 2;
-    FlowStatus flow_status = 3;
 }
 
 message PingMessage {
-    MessageType type = 1;
+    WorldCommMessageType type = 1;
     double time = 2;
-}
-
-message WebRtcSupportedMessage {
-    MessageType type = 1;
-    double time = 2;
-}
-
-message WebRtcOfferMessage {
-    MessageType type = 1;
-    double time = 2;
-    string sdp = 3;
-}
-
-message WebRtcAnswerMessage {
-    MessageType type = 1;
-    double time = 2;
-    string sdp = 3;
-}
-
-message WebRtcIceCandidateMessage {
-    MessageType type = 1;
-    double time = 2;
-    string sdp = 3;
 }

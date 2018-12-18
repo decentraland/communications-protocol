@@ -20,133 +20,87 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
-type MessageType int32
+type WorldCommMessageType int32
 
 const (
-	MessageType_UNKNOWN_MESSAGE_TYPE            MessageType = 0
-	MessageType_POSITION                        MessageType = 2
-	MessageType_CHAT                            MessageType = 3
-	MessageType_CLIENT_DISCONNECTED_FROM_SERVER MessageType = 4
-	MessageType_PROFILE                         MessageType = 5
-	MessageType_CLOCK_SKEW_DETECTED             MessageType = 6
-	MessageType_FLOW_STATUS                     MessageType = 7
-	MessageType_PING                            MessageType = 8
-	MessageType_WEBRTC_SUPPORTED                MessageType = 9
-	MessageType_WEBRTC_OFFER                    MessageType = 10
-	MessageType_WEBRTC_ANSWER                   MessageType = 11
-	MessageType_WEBRTC_ICE_CANDIDATE            MessageType = 12
+	WorldCommMessageType_UNKNOWN_MESSAGE_TYPE            WorldCommMessageType = 0
+	WorldCommMessageType_POSITION                        WorldCommMessageType = 2
+	WorldCommMessageType_CHAT                            WorldCommMessageType = 3
+	WorldCommMessageType_CLIENT_DISCONNECTED_FROM_SERVER WorldCommMessageType = 4
+	WorldCommMessageType_PROFILE                         WorldCommMessageType = 5
+	WorldCommMessageType_CLOCK_SKEW_DETECTED             WorldCommMessageType = 6
+	WorldCommMessageType_PING                            WorldCommMessageType = 8
 )
 
-var MessageType_name = map[int32]string{
-	0:  "UNKNOWN_MESSAGE_TYPE",
-	2:  "POSITION",
-	3:  "CHAT",
-	4:  "CLIENT_DISCONNECTED_FROM_SERVER",
-	5:  "PROFILE",
-	6:  "CLOCK_SKEW_DETECTED",
-	7:  "FLOW_STATUS",
-	8:  "PING",
-	9:  "WEBRTC_SUPPORTED",
-	10: "WEBRTC_OFFER",
-	11: "WEBRTC_ANSWER",
-	12: "WEBRTC_ICE_CANDIDATE",
+var WorldCommMessageType_name = map[int32]string{
+	0: "UNKNOWN_MESSAGE_TYPE",
+	2: "POSITION",
+	3: "CHAT",
+	4: "CLIENT_DISCONNECTED_FROM_SERVER",
+	5: "PROFILE",
+	6: "CLOCK_SKEW_DETECTED",
+	8: "PING",
 }
 
-var MessageType_value = map[string]int32{
+var WorldCommMessageType_value = map[string]int32{
 	"UNKNOWN_MESSAGE_TYPE":            0,
 	"POSITION":                        2,
 	"CHAT":                            3,
 	"CLIENT_DISCONNECTED_FROM_SERVER": 4,
 	"PROFILE":                         5,
 	"CLOCK_SKEW_DETECTED":             6,
-	"FLOW_STATUS":                     7,
 	"PING":                            8,
-	"WEBRTC_SUPPORTED":                9,
-	"WEBRTC_OFFER":                    10,
-	"WEBRTC_ANSWER":                   11,
-	"WEBRTC_ICE_CANDIDATE":            12,
 }
 
-func (x MessageType) String() string {
-	return proto.EnumName(MessageType_name, int32(x))
+func (x WorldCommMessageType) String() string {
+	return proto.EnumName(WorldCommMessageType_name, int32(x))
 }
 
-func (MessageType) EnumDescriptor() ([]byte, []int) {
+func (WorldCommMessageType) EnumDescriptor() ([]byte, []int) {
 	return fileDescriptor_966603bf5abd3632, []int{0}
 }
 
-type FlowStatus int32
-
-const (
-	FlowStatus_UNKNOWN_STATUS        FlowStatus = 0
-	FlowStatus_CLOSE                 FlowStatus = 1
-	FlowStatus_OPEN                  FlowStatus = 100
-	FlowStatus_OPEN_WEBRTC_PREFERRED FlowStatus = 101
-)
-
-var FlowStatus_name = map[int32]string{
-	0:   "UNKNOWN_STATUS",
-	1:   "CLOSE",
-	100: "OPEN",
-	101: "OPEN_WEBRTC_PREFERRED",
+type WorldCommMessage struct {
+	Type                 WorldCommMessageType `protobuf:"varint,1,opt,name=type,proto3,enum=WorldCommMessageType" json:"type,omitempty"`
+	Time                 float64              `protobuf:"fixed64,2,opt,name=time,proto3" json:"time,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
-var FlowStatus_value = map[string]int32{
-	"UNKNOWN_STATUS":        0,
-	"CLOSE":                 1,
-	"OPEN":                  100,
-	"OPEN_WEBRTC_PREFERRED": 101,
-}
-
-func (x FlowStatus) String() string {
-	return proto.EnumName(FlowStatus_name, int32(x))
-}
-
-func (FlowStatus) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_966603bf5abd3632, []int{1}
-}
-
-type GenericMessage struct {
-	Type                 MessageType `protobuf:"varint,1,opt,name=type,proto3,enum=MessageType" json:"type,omitempty"`
-	Time                 float64     `protobuf:"fixed64,2,opt,name=time,proto3" json:"time,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
-	XXX_unrecognized     []byte      `json:"-"`
-	XXX_sizecache        int32       `json:"-"`
-}
-
-func (m *GenericMessage) Reset()         { *m = GenericMessage{} }
-func (m *GenericMessage) String() string { return proto.CompactTextString(m) }
-func (*GenericMessage) ProtoMessage()    {}
-func (*GenericMessage) Descriptor() ([]byte, []int) {
+func (m *WorldCommMessage) Reset()         { *m = WorldCommMessage{} }
+func (m *WorldCommMessage) String() string { return proto.CompactTextString(m) }
+func (*WorldCommMessage) ProtoMessage()    {}
+func (*WorldCommMessage) Descriptor() ([]byte, []int) {
 	return fileDescriptor_966603bf5abd3632, []int{0}
 }
 
-func (m *GenericMessage) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GenericMessage.Unmarshal(m, b)
+func (m *WorldCommMessage) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_WorldCommMessage.Unmarshal(m, b)
 }
-func (m *GenericMessage) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GenericMessage.Marshal(b, m, deterministic)
+func (m *WorldCommMessage) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_WorldCommMessage.Marshal(b, m, deterministic)
 }
-func (m *GenericMessage) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GenericMessage.Merge(m, src)
+func (m *WorldCommMessage) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_WorldCommMessage.Merge(m, src)
 }
-func (m *GenericMessage) XXX_Size() int {
-	return xxx_messageInfo_GenericMessage.Size(m)
+func (m *WorldCommMessage) XXX_Size() int {
+	return xxx_messageInfo_WorldCommMessage.Size(m)
 }
-func (m *GenericMessage) XXX_DiscardUnknown() {
-	xxx_messageInfo_GenericMessage.DiscardUnknown(m)
+func (m *WorldCommMessage) XXX_DiscardUnknown() {
+	xxx_messageInfo_WorldCommMessage.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_GenericMessage proto.InternalMessageInfo
+var xxx_messageInfo_WorldCommMessage proto.InternalMessageInfo
 
-func (m *GenericMessage) GetType() MessageType {
+func (m *WorldCommMessage) GetType() WorldCommMessageType {
 	if m != nil {
 		return m.Type
 	}
-	return MessageType_UNKNOWN_MESSAGE_TYPE
+	return WorldCommMessageType_UNKNOWN_MESSAGE_TYPE
 }
 
-func (m *GenericMessage) GetTime() float64 {
+func (m *WorldCommMessage) GetTime() float64 {
 	if m != nil {
 		return m.Time
 	}
@@ -154,19 +108,19 @@ func (m *GenericMessage) GetTime() float64 {
 }
 
 type PositionMessage struct {
-	Type                 MessageType `protobuf:"varint,1,opt,name=type,proto3,enum=MessageType" json:"type,omitempty"`
-	Time                 float64     `protobuf:"fixed64,2,opt,name=time,proto3" json:"time,omitempty"`
-	PositionX            float32     `protobuf:"fixed32,3,opt,name=position_x,json=positionX,proto3" json:"position_x,omitempty"`
-	PositionY            float32     `protobuf:"fixed32,4,opt,name=position_y,json=positionY,proto3" json:"position_y,omitempty"`
-	PositionZ            float32     `protobuf:"fixed32,5,opt,name=position_z,json=positionZ,proto3" json:"position_z,omitempty"`
-	RotationX            float32     `protobuf:"fixed32,6,opt,name=rotation_x,json=rotationX,proto3" json:"rotation_x,omitempty"`
-	RotationY            float32     `protobuf:"fixed32,7,opt,name=rotation_y,json=rotationY,proto3" json:"rotation_y,omitempty"`
-	RotationZ            float32     `protobuf:"fixed32,8,opt,name=rotation_z,json=rotationZ,proto3" json:"rotation_z,omitempty"`
-	RotationW            float32     `protobuf:"fixed32,9,opt,name=rotation_w,json=rotationW,proto3" json:"rotation_w,omitempty"`
-	Alias                uint32      `protobuf:"varint,10,opt,name=alias,proto3" json:"alias,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
-	XXX_unrecognized     []byte      `json:"-"`
-	XXX_sizecache        int32       `json:"-"`
+	Type                 WorldCommMessageType `protobuf:"varint,1,opt,name=type,proto3,enum=WorldCommMessageType" json:"type,omitempty"`
+	Time                 float64              `protobuf:"fixed64,2,opt,name=time,proto3" json:"time,omitempty"`
+	PositionX            float32              `protobuf:"fixed32,3,opt,name=position_x,json=positionX,proto3" json:"position_x,omitempty"`
+	PositionY            float32              `protobuf:"fixed32,4,opt,name=position_y,json=positionY,proto3" json:"position_y,omitempty"`
+	PositionZ            float32              `protobuf:"fixed32,5,opt,name=position_z,json=positionZ,proto3" json:"position_z,omitempty"`
+	RotationX            float32              `protobuf:"fixed32,6,opt,name=rotation_x,json=rotationX,proto3" json:"rotation_x,omitempty"`
+	RotationY            float32              `protobuf:"fixed32,7,opt,name=rotation_y,json=rotationY,proto3" json:"rotation_y,omitempty"`
+	RotationZ            float32              `protobuf:"fixed32,8,opt,name=rotation_z,json=rotationZ,proto3" json:"rotation_z,omitempty"`
+	RotationW            float32              `protobuf:"fixed32,9,opt,name=rotation_w,json=rotationW,proto3" json:"rotation_w,omitempty"`
+	Alias                uint32               `protobuf:"varint,10,opt,name=alias,proto3" json:"alias,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
 func (m *PositionMessage) Reset()         { *m = PositionMessage{} }
@@ -194,11 +148,11 @@ func (m *PositionMessage) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_PositionMessage proto.InternalMessageInfo
 
-func (m *PositionMessage) GetType() MessageType {
+func (m *PositionMessage) GetType() WorldCommMessageType {
 	if m != nil {
 		return m.Type
 	}
-	return MessageType_UNKNOWN_MESSAGE_TYPE
+	return WorldCommMessageType_UNKNOWN_MESSAGE_TYPE
 }
 
 func (m *PositionMessage) GetTime() float64 {
@@ -265,18 +219,18 @@ func (m *PositionMessage) GetAlias() uint32 {
 }
 
 type ProfileMessage struct {
-	Type                 MessageType `protobuf:"varint,1,opt,name=type,proto3,enum=MessageType" json:"type,omitempty"`
-	Time                 float64     `protobuf:"fixed64,2,opt,name=time,proto3" json:"time,omitempty"`
-	PositionX            float32     `protobuf:"fixed32,3,opt,name=position_x,json=positionX,proto3" json:"position_x,omitempty"`
-	PositionZ            float32     `protobuf:"fixed32,4,opt,name=position_z,json=positionZ,proto3" json:"position_z,omitempty"`
-	AvatarType           string      `protobuf:"bytes,5,opt,name=avatar_type,json=avatarType,proto3" json:"avatar_type,omitempty"`
-	DisplayName          string      `protobuf:"bytes,6,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
-	PeerId               string      `protobuf:"bytes,7,opt,name=peer_id,json=peerId,proto3" json:"peer_id,omitempty"`
-	Alias                uint32      `protobuf:"varint,8,opt,name=alias,proto3" json:"alias,omitempty"`
-	PublicKey            string      `protobuf:"bytes,9,opt,name=public_key,json=publicKey,proto3" json:"public_key,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
-	XXX_unrecognized     []byte      `json:"-"`
-	XXX_sizecache        int32       `json:"-"`
+	Type                 WorldCommMessageType `protobuf:"varint,1,opt,name=type,proto3,enum=WorldCommMessageType" json:"type,omitempty"`
+	Time                 float64              `protobuf:"fixed64,2,opt,name=time,proto3" json:"time,omitempty"`
+	PositionX            float32              `protobuf:"fixed32,3,opt,name=position_x,json=positionX,proto3" json:"position_x,omitempty"`
+	PositionZ            float32              `protobuf:"fixed32,4,opt,name=position_z,json=positionZ,proto3" json:"position_z,omitempty"`
+	AvatarType           string               `protobuf:"bytes,5,opt,name=avatar_type,json=avatarType,proto3" json:"avatar_type,omitempty"`
+	DisplayName          string               `protobuf:"bytes,6,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
+	PeerId               string               `protobuf:"bytes,7,opt,name=peer_id,json=peerId,proto3" json:"peer_id,omitempty"`
+	Alias                uint32               `protobuf:"varint,8,opt,name=alias,proto3" json:"alias,omitempty"`
+	PublicKey            string               `protobuf:"bytes,9,opt,name=public_key,json=publicKey,proto3" json:"public_key,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
 func (m *ProfileMessage) Reset()         { *m = ProfileMessage{} }
@@ -304,11 +258,11 @@ func (m *ProfileMessage) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_ProfileMessage proto.InternalMessageInfo
 
-func (m *ProfileMessage) GetType() MessageType {
+func (m *ProfileMessage) GetType() WorldCommMessageType {
 	if m != nil {
 		return m.Type
 	}
-	return MessageType_UNKNOWN_MESSAGE_TYPE
+	return WorldCommMessageType_UNKNOWN_MESSAGE_TYPE
 }
 
 func (m *ProfileMessage) GetTime() float64 {
@@ -368,16 +322,16 @@ func (m *ProfileMessage) GetPublicKey() string {
 }
 
 type ChatMessage struct {
-	Type                 MessageType `protobuf:"varint,1,opt,name=type,proto3,enum=MessageType" json:"type,omitempty"`
-	Time                 float64     `protobuf:"fixed64,2,opt,name=time,proto3" json:"time,omitempty"`
-	MessageId            string      `protobuf:"bytes,3,opt,name=message_id,json=messageId,proto3" json:"message_id,omitempty"`
-	PositionX            float32     `protobuf:"fixed32,4,opt,name=position_x,json=positionX,proto3" json:"position_x,omitempty"`
-	PositionZ            float32     `protobuf:"fixed32,5,opt,name=position_z,json=positionZ,proto3" json:"position_z,omitempty"`
-	Text                 string      `protobuf:"bytes,6,opt,name=text,proto3" json:"text,omitempty"`
-	Alias                uint32      `protobuf:"varint,7,opt,name=alias,proto3" json:"alias,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
-	XXX_unrecognized     []byte      `json:"-"`
-	XXX_sizecache        int32       `json:"-"`
+	Type                 WorldCommMessageType `protobuf:"varint,1,opt,name=type,proto3,enum=WorldCommMessageType" json:"type,omitempty"`
+	Time                 float64              `protobuf:"fixed64,2,opt,name=time,proto3" json:"time,omitempty"`
+	MessageId            string               `protobuf:"bytes,3,opt,name=message_id,json=messageId,proto3" json:"message_id,omitempty"`
+	PositionX            float32              `protobuf:"fixed32,4,opt,name=position_x,json=positionX,proto3" json:"position_x,omitempty"`
+	PositionZ            float32              `protobuf:"fixed32,5,opt,name=position_z,json=positionZ,proto3" json:"position_z,omitempty"`
+	Text                 string               `protobuf:"bytes,6,opt,name=text,proto3" json:"text,omitempty"`
+	Alias                uint32               `protobuf:"varint,7,opt,name=alias,proto3" json:"alias,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
 func (m *ChatMessage) Reset()         { *m = ChatMessage{} }
@@ -405,11 +359,11 @@ func (m *ChatMessage) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_ChatMessage proto.InternalMessageInfo
 
-func (m *ChatMessage) GetType() MessageType {
+func (m *ChatMessage) GetType() WorldCommMessageType {
 	if m != nil {
 		return m.Type
 	}
-	return MessageType_UNKNOWN_MESSAGE_TYPE
+	return WorldCommMessageType_UNKNOWN_MESSAGE_TYPE
 }
 
 func (m *ChatMessage) GetTime() float64 {
@@ -455,12 +409,12 @@ func (m *ChatMessage) GetAlias() uint32 {
 }
 
 type ClientDisconnectedFromServerMessage struct {
-	Type                 MessageType `protobuf:"varint,1,opt,name=type,proto3,enum=MessageType" json:"type,omitempty"`
-	Time                 float64     `protobuf:"fixed64,2,opt,name=time,proto3" json:"time,omitempty"`
-	Alias                uint32      `protobuf:"varint,3,opt,name=alias,proto3" json:"alias,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
-	XXX_unrecognized     []byte      `json:"-"`
-	XXX_sizecache        int32       `json:"-"`
+	Type                 WorldCommMessageType `protobuf:"varint,1,opt,name=type,proto3,enum=WorldCommMessageType" json:"type,omitempty"`
+	Time                 float64              `protobuf:"fixed64,2,opt,name=time,proto3" json:"time,omitempty"`
+	Alias                uint32               `protobuf:"varint,3,opt,name=alias,proto3" json:"alias,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
 func (m *ClientDisconnectedFromServerMessage) Reset()         { *m = ClientDisconnectedFromServerMessage{} }
@@ -488,11 +442,11 @@ func (m *ClientDisconnectedFromServerMessage) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_ClientDisconnectedFromServerMessage proto.InternalMessageInfo
 
-func (m *ClientDisconnectedFromServerMessage) GetType() MessageType {
+func (m *ClientDisconnectedFromServerMessage) GetType() WorldCommMessageType {
 	if m != nil {
 		return m.Type
 	}
-	return MessageType_UNKNOWN_MESSAGE_TYPE
+	return WorldCommMessageType_UNKNOWN_MESSAGE_TYPE
 }
 
 func (m *ClientDisconnectedFromServerMessage) GetTime() float64 {
@@ -510,11 +464,11 @@ func (m *ClientDisconnectedFromServerMessage) GetAlias() uint32 {
 }
 
 type ClockSkewMessage struct {
-	Type                 MessageType `protobuf:"varint,1,opt,name=type,proto3,enum=MessageType" json:"type,omitempty"`
-	Time                 float64     `protobuf:"fixed64,2,opt,name=time,proto3" json:"time,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
-	XXX_unrecognized     []byte      `json:"-"`
-	XXX_sizecache        int32       `json:"-"`
+	Type                 WorldCommMessageType `protobuf:"varint,1,opt,name=type,proto3,enum=WorldCommMessageType" json:"type,omitempty"`
+	Time                 float64              `protobuf:"fixed64,2,opt,name=time,proto3" json:"time,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
 func (m *ClockSkewMessage) Reset()         { *m = ClockSkewMessage{} }
@@ -542,11 +496,11 @@ func (m *ClockSkewMessage) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_ClockSkewMessage proto.InternalMessageInfo
 
-func (m *ClockSkewMessage) GetType() MessageType {
+func (m *ClockSkewMessage) GetType() WorldCommMessageType {
 	if m != nil {
 		return m.Type
 	}
-	return MessageType_UNKNOWN_MESSAGE_TYPE
+	return WorldCommMessageType_UNKNOWN_MESSAGE_TYPE
 }
 
 func (m *ClockSkewMessage) GetTime() float64 {
@@ -556,74 +510,19 @@ func (m *ClockSkewMessage) GetTime() float64 {
 	return 0
 }
 
-type FlowStatusMessage struct {
-	Type                 MessageType `protobuf:"varint,1,opt,name=type,proto3,enum=MessageType" json:"type,omitempty"`
-	Time                 float64     `protobuf:"fixed64,2,opt,name=time,proto3" json:"time,omitempty"`
-	FlowStatus           FlowStatus  `protobuf:"varint,3,opt,name=flow_status,json=flowStatus,proto3,enum=FlowStatus" json:"flow_status,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
-	XXX_unrecognized     []byte      `json:"-"`
-	XXX_sizecache        int32       `json:"-"`
-}
-
-func (m *FlowStatusMessage) Reset()         { *m = FlowStatusMessage{} }
-func (m *FlowStatusMessage) String() string { return proto.CompactTextString(m) }
-func (*FlowStatusMessage) ProtoMessage()    {}
-func (*FlowStatusMessage) Descriptor() ([]byte, []int) {
-	return fileDescriptor_966603bf5abd3632, []int{6}
-}
-
-func (m *FlowStatusMessage) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_FlowStatusMessage.Unmarshal(m, b)
-}
-func (m *FlowStatusMessage) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_FlowStatusMessage.Marshal(b, m, deterministic)
-}
-func (m *FlowStatusMessage) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_FlowStatusMessage.Merge(m, src)
-}
-func (m *FlowStatusMessage) XXX_Size() int {
-	return xxx_messageInfo_FlowStatusMessage.Size(m)
-}
-func (m *FlowStatusMessage) XXX_DiscardUnknown() {
-	xxx_messageInfo_FlowStatusMessage.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_FlowStatusMessage proto.InternalMessageInfo
-
-func (m *FlowStatusMessage) GetType() MessageType {
-	if m != nil {
-		return m.Type
-	}
-	return MessageType_UNKNOWN_MESSAGE_TYPE
-}
-
-func (m *FlowStatusMessage) GetTime() float64 {
-	if m != nil {
-		return m.Time
-	}
-	return 0
-}
-
-func (m *FlowStatusMessage) GetFlowStatus() FlowStatus {
-	if m != nil {
-		return m.FlowStatus
-	}
-	return FlowStatus_UNKNOWN_STATUS
-}
-
 type PingMessage struct {
-	Type                 MessageType `protobuf:"varint,1,opt,name=type,proto3,enum=MessageType" json:"type,omitempty"`
-	Time                 float64     `protobuf:"fixed64,2,opt,name=time,proto3" json:"time,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
-	XXX_unrecognized     []byte      `json:"-"`
-	XXX_sizecache        int32       `json:"-"`
+	Type                 WorldCommMessageType `protobuf:"varint,1,opt,name=type,proto3,enum=WorldCommMessageType" json:"type,omitempty"`
+	Time                 float64              `protobuf:"fixed64,2,opt,name=time,proto3" json:"time,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
 func (m *PingMessage) Reset()         { *m = PingMessage{} }
 func (m *PingMessage) String() string { return proto.CompactTextString(m) }
 func (*PingMessage) ProtoMessage()    {}
 func (*PingMessage) Descriptor() ([]byte, []int) {
-	return fileDescriptor_966603bf5abd3632, []int{7}
+	return fileDescriptor_966603bf5abd3632, []int{6}
 }
 
 func (m *PingMessage) XXX_Unmarshal(b []byte) error {
@@ -644,11 +543,11 @@ func (m *PingMessage) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_PingMessage proto.InternalMessageInfo
 
-func (m *PingMessage) GetType() MessageType {
+func (m *PingMessage) GetType() WorldCommMessageType {
 	if m != nil {
 		return m.Type
 	}
-	return MessageType_UNKNOWN_MESSAGE_TYPE
+	return WorldCommMessageType_UNKNOWN_MESSAGE_TYPE
 }
 
 func (m *PingMessage) GetTime() float64 {
@@ -658,284 +557,53 @@ func (m *PingMessage) GetTime() float64 {
 	return 0
 }
 
-type WebRtcSupportedMessage struct {
-	Type                 MessageType `protobuf:"varint,1,opt,name=type,proto3,enum=MessageType" json:"type,omitempty"`
-	Time                 float64     `protobuf:"fixed64,2,opt,name=time,proto3" json:"time,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
-	XXX_unrecognized     []byte      `json:"-"`
-	XXX_sizecache        int32       `json:"-"`
-}
-
-func (m *WebRtcSupportedMessage) Reset()         { *m = WebRtcSupportedMessage{} }
-func (m *WebRtcSupportedMessage) String() string { return proto.CompactTextString(m) }
-func (*WebRtcSupportedMessage) ProtoMessage()    {}
-func (*WebRtcSupportedMessage) Descriptor() ([]byte, []int) {
-	return fileDescriptor_966603bf5abd3632, []int{8}
-}
-
-func (m *WebRtcSupportedMessage) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_WebRtcSupportedMessage.Unmarshal(m, b)
-}
-func (m *WebRtcSupportedMessage) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_WebRtcSupportedMessage.Marshal(b, m, deterministic)
-}
-func (m *WebRtcSupportedMessage) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_WebRtcSupportedMessage.Merge(m, src)
-}
-func (m *WebRtcSupportedMessage) XXX_Size() int {
-	return xxx_messageInfo_WebRtcSupportedMessage.Size(m)
-}
-func (m *WebRtcSupportedMessage) XXX_DiscardUnknown() {
-	xxx_messageInfo_WebRtcSupportedMessage.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_WebRtcSupportedMessage proto.InternalMessageInfo
-
-func (m *WebRtcSupportedMessage) GetType() MessageType {
-	if m != nil {
-		return m.Type
-	}
-	return MessageType_UNKNOWN_MESSAGE_TYPE
-}
-
-func (m *WebRtcSupportedMessage) GetTime() float64 {
-	if m != nil {
-		return m.Time
-	}
-	return 0
-}
-
-type WebRtcOfferMessage struct {
-	Type                 MessageType `protobuf:"varint,1,opt,name=type,proto3,enum=MessageType" json:"type,omitempty"`
-	Time                 float64     `protobuf:"fixed64,2,opt,name=time,proto3" json:"time,omitempty"`
-	Sdp                  string      `protobuf:"bytes,3,opt,name=sdp,proto3" json:"sdp,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
-	XXX_unrecognized     []byte      `json:"-"`
-	XXX_sizecache        int32       `json:"-"`
-}
-
-func (m *WebRtcOfferMessage) Reset()         { *m = WebRtcOfferMessage{} }
-func (m *WebRtcOfferMessage) String() string { return proto.CompactTextString(m) }
-func (*WebRtcOfferMessage) ProtoMessage()    {}
-func (*WebRtcOfferMessage) Descriptor() ([]byte, []int) {
-	return fileDescriptor_966603bf5abd3632, []int{9}
-}
-
-func (m *WebRtcOfferMessage) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_WebRtcOfferMessage.Unmarshal(m, b)
-}
-func (m *WebRtcOfferMessage) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_WebRtcOfferMessage.Marshal(b, m, deterministic)
-}
-func (m *WebRtcOfferMessage) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_WebRtcOfferMessage.Merge(m, src)
-}
-func (m *WebRtcOfferMessage) XXX_Size() int {
-	return xxx_messageInfo_WebRtcOfferMessage.Size(m)
-}
-func (m *WebRtcOfferMessage) XXX_DiscardUnknown() {
-	xxx_messageInfo_WebRtcOfferMessage.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_WebRtcOfferMessage proto.InternalMessageInfo
-
-func (m *WebRtcOfferMessage) GetType() MessageType {
-	if m != nil {
-		return m.Type
-	}
-	return MessageType_UNKNOWN_MESSAGE_TYPE
-}
-
-func (m *WebRtcOfferMessage) GetTime() float64 {
-	if m != nil {
-		return m.Time
-	}
-	return 0
-}
-
-func (m *WebRtcOfferMessage) GetSdp() string {
-	if m != nil {
-		return m.Sdp
-	}
-	return ""
-}
-
-type WebRtcAnswerMessage struct {
-	Type                 MessageType `protobuf:"varint,1,opt,name=type,proto3,enum=MessageType" json:"type,omitempty"`
-	Time                 float64     `protobuf:"fixed64,2,opt,name=time,proto3" json:"time,omitempty"`
-	Sdp                  string      `protobuf:"bytes,3,opt,name=sdp,proto3" json:"sdp,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
-	XXX_unrecognized     []byte      `json:"-"`
-	XXX_sizecache        int32       `json:"-"`
-}
-
-func (m *WebRtcAnswerMessage) Reset()         { *m = WebRtcAnswerMessage{} }
-func (m *WebRtcAnswerMessage) String() string { return proto.CompactTextString(m) }
-func (*WebRtcAnswerMessage) ProtoMessage()    {}
-func (*WebRtcAnswerMessage) Descriptor() ([]byte, []int) {
-	return fileDescriptor_966603bf5abd3632, []int{10}
-}
-
-func (m *WebRtcAnswerMessage) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_WebRtcAnswerMessage.Unmarshal(m, b)
-}
-func (m *WebRtcAnswerMessage) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_WebRtcAnswerMessage.Marshal(b, m, deterministic)
-}
-func (m *WebRtcAnswerMessage) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_WebRtcAnswerMessage.Merge(m, src)
-}
-func (m *WebRtcAnswerMessage) XXX_Size() int {
-	return xxx_messageInfo_WebRtcAnswerMessage.Size(m)
-}
-func (m *WebRtcAnswerMessage) XXX_DiscardUnknown() {
-	xxx_messageInfo_WebRtcAnswerMessage.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_WebRtcAnswerMessage proto.InternalMessageInfo
-
-func (m *WebRtcAnswerMessage) GetType() MessageType {
-	if m != nil {
-		return m.Type
-	}
-	return MessageType_UNKNOWN_MESSAGE_TYPE
-}
-
-func (m *WebRtcAnswerMessage) GetTime() float64 {
-	if m != nil {
-		return m.Time
-	}
-	return 0
-}
-
-func (m *WebRtcAnswerMessage) GetSdp() string {
-	if m != nil {
-		return m.Sdp
-	}
-	return ""
-}
-
-type WebRtcIceCandidateMessage struct {
-	Type                 MessageType `protobuf:"varint,1,opt,name=type,proto3,enum=MessageType" json:"type,omitempty"`
-	Time                 float64     `protobuf:"fixed64,2,opt,name=time,proto3" json:"time,omitempty"`
-	Sdp                  string      `protobuf:"bytes,3,opt,name=sdp,proto3" json:"sdp,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
-	XXX_unrecognized     []byte      `json:"-"`
-	XXX_sizecache        int32       `json:"-"`
-}
-
-func (m *WebRtcIceCandidateMessage) Reset()         { *m = WebRtcIceCandidateMessage{} }
-func (m *WebRtcIceCandidateMessage) String() string { return proto.CompactTextString(m) }
-func (*WebRtcIceCandidateMessage) ProtoMessage()    {}
-func (*WebRtcIceCandidateMessage) Descriptor() ([]byte, []int) {
-	return fileDescriptor_966603bf5abd3632, []int{11}
-}
-
-func (m *WebRtcIceCandidateMessage) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_WebRtcIceCandidateMessage.Unmarshal(m, b)
-}
-func (m *WebRtcIceCandidateMessage) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_WebRtcIceCandidateMessage.Marshal(b, m, deterministic)
-}
-func (m *WebRtcIceCandidateMessage) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_WebRtcIceCandidateMessage.Merge(m, src)
-}
-func (m *WebRtcIceCandidateMessage) XXX_Size() int {
-	return xxx_messageInfo_WebRtcIceCandidateMessage.Size(m)
-}
-func (m *WebRtcIceCandidateMessage) XXX_DiscardUnknown() {
-	xxx_messageInfo_WebRtcIceCandidateMessage.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_WebRtcIceCandidateMessage proto.InternalMessageInfo
-
-func (m *WebRtcIceCandidateMessage) GetType() MessageType {
-	if m != nil {
-		return m.Type
-	}
-	return MessageType_UNKNOWN_MESSAGE_TYPE
-}
-
-func (m *WebRtcIceCandidateMessage) GetTime() float64 {
-	if m != nil {
-		return m.Time
-	}
-	return 0
-}
-
-func (m *WebRtcIceCandidateMessage) GetSdp() string {
-	if m != nil {
-		return m.Sdp
-	}
-	return ""
-}
-
 func init() {
-	proto.RegisterEnum("MessageType", MessageType_name, MessageType_value)
-	proto.RegisterEnum("FlowStatus", FlowStatus_name, FlowStatus_value)
-	proto.RegisterType((*GenericMessage)(nil), "GenericMessage")
+	proto.RegisterEnum("WorldCommMessageType", WorldCommMessageType_name, WorldCommMessageType_value)
+	proto.RegisterType((*WorldCommMessage)(nil), "WorldCommMessage")
 	proto.RegisterType((*PositionMessage)(nil), "PositionMessage")
 	proto.RegisterType((*ProfileMessage)(nil), "ProfileMessage")
 	proto.RegisterType((*ChatMessage)(nil), "ChatMessage")
 	proto.RegisterType((*ClientDisconnectedFromServerMessage)(nil), "ClientDisconnectedFromServerMessage")
 	proto.RegisterType((*ClockSkewMessage)(nil), "ClockSkewMessage")
-	proto.RegisterType((*FlowStatusMessage)(nil), "FlowStatusMessage")
 	proto.RegisterType((*PingMessage)(nil), "PingMessage")
-	proto.RegisterType((*WebRtcSupportedMessage)(nil), "WebRtcSupportedMessage")
-	proto.RegisterType((*WebRtcOfferMessage)(nil), "WebRtcOfferMessage")
-	proto.RegisterType((*WebRtcAnswerMessage)(nil), "WebRtcAnswerMessage")
-	proto.RegisterType((*WebRtcIceCandidateMessage)(nil), "WebRtcIceCandidateMessage")
 }
 
 func init() { proto.RegisterFile("worldcomm.proto", fileDescriptor_966603bf5abd3632) }
 
 var fileDescriptor_966603bf5abd3632 = []byte{
-	// 743 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xbc, 0x55, 0xdd, 0x6e, 0xa3, 0x46,
-	0x18, 0x5d, 0xfc, 0xcf, 0x87, 0xd7, 0x99, 0x9d, 0x4d, 0xbb, 0xec, 0x45, 0xb5, 0xae, 0xf7, 0xc6,
-	0x5a, 0x55, 0xb9, 0xd8, 0x3e, 0x81, 0x8b, 0x87, 0x2c, 0xb2, 0x03, 0x68, 0x20, 0xf5, 0x26, 0x6a,
-	0x35, 0x22, 0x30, 0x4e, 0x51, 0x30, 0x50, 0x20, 0x71, 0x9c, 0x07, 0xe9, 0xa3, 0xf4, 0x21, 0xfa,
-	0x48, 0xbd, 0xaa, 0xf8, 0x49, 0x6c, 0x52, 0xa9, 0x37, 0x44, 0xbd, 0xfb, 0x38, 0xc7, 0x73, 0xce,
-	0xf9, 0x0e, 0x63, 0x01, 0x47, 0xdb, 0x28, 0x09, 0x3c, 0x37, 0xda, 0x6c, 0x4e, 0xe2, 0x24, 0xca,
-	0xa2, 0x89, 0x0a, 0xa3, 0x53, 0x1e, 0xf2, 0xc4, 0x77, 0xcf, 0x78, 0x9a, 0x3a, 0xd7, 0x1c, 0x8f,
-	0xa1, 0x93, 0xed, 0x62, 0x2e, 0x0b, 0x63, 0x61, 0x3a, 0xfa, 0x3c, 0x3c, 0xa9, 0x70, 0x7b, 0x17,
-	0x73, 0x5a, 0x30, 0x18, 0x43, 0x27, 0xf3, 0x37, 0x5c, 0x6e, 0x8d, 0x85, 0xa9, 0x40, 0x8b, 0x79,
-	0xf2, 0x67, 0x0b, 0x8e, 0xcc, 0x28, 0xf5, 0x33, 0x3f, 0x0a, 0x1b, 0x29, 0xe1, 0xef, 0x00, 0xe2,
-	0x4a, 0x88, 0xdd, 0xcb, 0xed, 0xb1, 0x30, 0x6d, 0x51, 0xf1, 0x11, 0xf9, 0x5a, 0xa3, 0x77, 0x72,
-	0xa7, 0x4e, 0x5f, 0xd4, 0xe8, 0x07, 0xb9, 0x5b, 0xa7, 0x2f, 0x73, 0x3a, 0x89, 0x32, 0xa7, 0x12,
-	0xef, 0x95, 0xf4, 0x23, 0xf2, 0xb5, 0x46, 0xef, 0xe4, 0x7e, 0x9d, 0xbe, 0xa8, 0xd1, 0x0f, 0xf2,
-	0xa0, 0x4e, 0xd7, 0xc5, 0xb7, 0xb2, 0x58, 0xa7, 0x57, 0xf8, 0x18, 0xba, 0x4e, 0xe0, 0x3b, 0xa9,
-	0x0c, 0x63, 0x61, 0xfa, 0x9a, 0x96, 0x0f, 0x93, 0x3f, 0x5a, 0x30, 0x32, 0x93, 0x68, 0xed, 0x07,
-	0xfc, 0x7f, 0xeb, 0xed, 0xe1, 0x79, 0x6f, 0x97, 0xf8, 0x03, 0x48, 0xce, 0x9d, 0x93, 0x39, 0x09,
-	0x2b, 0xac, 0xf3, 0xe2, 0x44, 0x0a, 0x25, 0x94, 0x1b, 0xe3, 0xef, 0x61, 0xe8, 0xf9, 0x69, 0x1c,
-	0x38, 0x3b, 0x16, 0x3a, 0x1b, 0x5e, 0x74, 0x27, 0x52, 0xa9, 0xc2, 0x74, 0x67, 0xc3, 0xf1, 0x3b,
-	0xe8, 0xc7, 0x9c, 0x27, 0xcc, 0xf7, 0x8a, 0xea, 0x44, 0xda, 0xcb, 0x1f, 0x35, 0x6f, 0xbf, 0xf9,
-	0xe0, 0x60, 0xf3, 0x22, 0xd1, 0xed, 0x55, 0xe0, 0xbb, 0xec, 0x86, 0xef, 0x8a, 0xba, 0x44, 0x2a,
-	0x96, 0xc8, 0x82, 0xef, 0x26, 0x7f, 0x09, 0x20, 0x29, 0xbf, 0x39, 0x59, 0xe3, 0x56, 0x36, 0xe5,
-	0x0f, 0xf3, 0x58, 0xed, 0xd2, 0xa4, 0x42, 0x34, 0xef, 0x59, 0x69, 0x9d, 0xff, 0x2e, 0xed, 0x5f,
-	0xb7, 0x29, 0x37, 0xe4, 0xf7, 0x59, 0xd5, 0x45, 0x31, 0xef, 0x77, 0xed, 0x1f, 0xbe, 0xe5, 0xdf,
-	0xe1, 0xa3, 0x12, 0xf8, 0x3c, 0xcc, 0xe6, 0x7e, 0xea, 0x46, 0x61, 0xc8, 0xdd, 0x8c, 0x7b, 0x6a,
-	0x12, 0x6d, 0x2c, 0x9e, 0xdc, 0xf1, 0xa4, 0xd9, 0x8e, 0x4f, 0x96, 0xed, 0x43, 0xcb, 0x2f, 0x80,
-	0x94, 0x20, 0x72, 0x6f, 0xac, 0x1b, 0xbe, 0x6d, 0xf6, 0xdf, 0xde, 0xc2, 0x1b, 0x35, 0x88, 0xb6,
-	0x56, 0xe6, 0x64, 0xb7, 0x69, 0xb3, 0xa8, 0x3f, 0x80, 0xb4, 0x0e, 0xa2, 0x2d, 0x4b, 0x0b, 0xad,
-	0x22, 0xf0, 0xe8, 0xb3, 0x74, 0xb2, 0x97, 0xa7, 0xb0, 0x7e, 0x9a, 0x27, 0x0a, 0x48, 0xa6, 0x1f,
-	0x5e, 0x37, 0x4b, 0xaf, 0xc3, 0xb7, 0x2b, 0x7e, 0x45, 0x33, 0xd7, 0xba, 0x8d, 0xe3, 0x28, 0xc9,
-	0xb8, 0xd7, 0x4c, 0xef, 0x17, 0xc0, 0xa5, 0x9e, 0xb1, 0x5e, 0x37, 0x7d, 0x73, 0x08, 0xda, 0xa9,
-	0x17, 0x57, 0xd7, 0x32, 0x1f, 0x27, 0xbf, 0xc2, 0xdb, 0x52, 0x7d, 0x16, 0xa6, 0xdb, 0x97, 0x97,
-	0x77, 0xe1, 0x7d, 0x29, 0xaf, 0xb9, 0x5c, 0x71, 0x42, 0xcf, 0xf7, 0x9c, 0x8c, 0xbf, 0xb0, 0xc9,
-	0xa7, 0xbf, 0x05, 0x90, 0x0e, 0xce, 0x62, 0x19, 0x8e, 0xcf, 0xf5, 0x85, 0x6e, 0xac, 0x74, 0x76,
-	0x46, 0x2c, 0x6b, 0x76, 0x4a, 0x98, 0x7d, 0x61, 0x12, 0xf4, 0x0a, 0x0f, 0x61, 0x60, 0x1a, 0x96,
-	0x66, 0x6b, 0x86, 0x8e, 0x5a, 0x78, 0x00, 0x1d, 0xe5, 0xcb, 0xcc, 0x46, 0x6d, 0xfc, 0x11, 0x3e,
-	0x28, 0x4b, 0x8d, 0xe8, 0x36, 0x9b, 0x6b, 0x96, 0x62, 0xe8, 0x3a, 0x51, 0x6c, 0x32, 0x67, 0x2a,
-	0x35, 0xce, 0x98, 0x45, 0xe8, 0xcf, 0x84, 0xa2, 0x0e, 0x96, 0xa0, 0x6f, 0x52, 0x43, 0xd5, 0x96,
-	0x04, 0x75, 0xf1, 0x3b, 0x78, 0xab, 0x2c, 0x0d, 0x65, 0xc1, 0xac, 0x05, 0x59, 0xb1, 0x39, 0xb1,
-	0x8b, 0x13, 0xa8, 0x87, 0x8f, 0x40, 0x52, 0x97, 0xc6, 0x8a, 0x59, 0xf6, 0xcc, 0x3e, 0xb7, 0x50,
-	0x3f, 0x77, 0x31, 0x35, 0xfd, 0x14, 0x0d, 0xf0, 0x31, 0xa0, 0x15, 0xf9, 0x89, 0xda, 0x0a, 0xb3,
-	0xce, 0x4d, 0xd3, 0xa0, 0xf9, 0x01, 0x11, 0x23, 0x18, 0x56, 0xa8, 0xa1, 0xaa, 0x84, 0x22, 0xc0,
-	0x6f, 0xe0, 0x75, 0x85, 0xcc, 0x74, 0x6b, 0x45, 0x28, 0x92, 0xf2, 0x95, 0x2a, 0x48, 0x53, 0x08,
-	0x53, 0x66, 0xfa, 0x5c, 0x9b, 0xcf, 0x6c, 0x82, 0x86, 0x9f, 0x4c, 0x80, 0xfd, 0x6d, 0xc6, 0x18,
-	0x46, 0x8f, 0xab, 0x57, 0x01, 0x5e, 0x61, 0x11, 0xba, 0xca, 0xd2, 0xb0, 0x08, 0x12, 0xf2, 0x2c,
-	0x86, 0x49, 0x74, 0xe4, 0xe1, 0xf7, 0xf0, 0x4d, 0x3e, 0xb1, 0x4a, 0xd5, 0xa4, 0x44, 0x25, 0x94,
-	0x92, 0x39, 0xe2, 0x57, 0xbd, 0xe2, 0x4b, 0xfd, 0xe3, 0x3f, 0x01, 0x00, 0x00, 0xff, 0xff, 0xe3,
-	0x1e, 0x1f, 0x70, 0xbc, 0x07, 0x00, 0x00,
+	// 539 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xbc, 0x94, 0xd1, 0x72, 0x93, 0x40,
+	0x14, 0x86, 0x25, 0xa1, 0x49, 0x38, 0xa9, 0x2d, 0xb3, 0xd6, 0x29, 0x37, 0x4e, 0x63, 0x7a, 0x13,
+	0xbd, 0xe8, 0x85, 0x3e, 0x41, 0x87, 0xd0, 0xca, 0x24, 0x01, 0xba, 0xa0, 0x69, 0x7a, 0xb3, 0xb3,
+	0x0d, 0x6b, 0xdd, 0x09, 0xb0, 0x0c, 0x60, 0x53, 0xf2, 0x2e, 0x8e, 0x8f, 0xe2, 0x43, 0xf8, 0x42,
+	0x0e, 0x90, 0xda, 0x10, 0x1d, 0xaf, 0x32, 0xde, 0xed, 0xfe, 0xff, 0xd9, 0xff, 0x9c, 0xfd, 0x60,
+	0x16, 0x0e, 0x97, 0x22, 0x09, 0xfc, 0xb9, 0x08, 0xc3, 0xb3, 0x38, 0x11, 0x99, 0xe8, 0x5f, 0x81,
+	0x3a, 0x2d, 0x24, 0x5d, 0x84, 0xe1, 0x84, 0xa5, 0x29, 0xbd, 0x63, 0xe8, 0x0d, 0xc8, 0x59, 0x1e,
+	0x33, 0x4d, 0xea, 0x49, 0x83, 0x83, 0x77, 0x2f, 0xcf, 0xb6, 0x0b, 0xbc, 0x3c, 0x66, 0xb8, 0x2c,
+	0x41, 0x08, 0xe4, 0x8c, 0x87, 0x4c, 0x6b, 0xf4, 0xa4, 0x81, 0x84, 0xcb, 0x75, 0xff, 0x47, 0x03,
+	0x0e, 0x1d, 0x91, 0xf2, 0x8c, 0x8b, 0x68, 0x37, 0x91, 0xe8, 0x15, 0x40, 0xbc, 0x4e, 0x24, 0x0f,
+	0x5a, 0xb3, 0x27, 0x0d, 0x1a, 0x58, 0x79, 0x54, 0xae, 0x6b, 0x76, 0xae, 0xc9, 0x75, 0x7b, 0x56,
+	0xb3, 0x57, 0xda, 0x5e, 0xdd, 0xbe, 0x29, 0xec, 0x44, 0x64, 0x74, 0x1d, 0xde, 0xaa, 0xec, 0x47,
+	0xe5, 0xba, 0x66, 0xe7, 0x5a, 0xbb, 0x6e, 0xcf, 0x6a, 0xf6, 0x4a, 0xeb, 0xd4, 0xed, 0x7a, 0xf8,
+	0x52, 0x53, 0xea, 0xf6, 0x14, 0x1d, 0xc1, 0x1e, 0x0d, 0x38, 0x4d, 0x35, 0xe8, 0x49, 0x83, 0xe7,
+	0xb8, 0xda, 0xf4, 0xbf, 0x37, 0xe0, 0xc0, 0x49, 0xc4, 0x67, 0x1e, 0xb0, 0xff, 0x0f, 0x70, 0xb5,
+	0x0d, 0xf0, 0x06, 0x9d, 0x40, 0x97, 0xde, 0xd3, 0x8c, 0x26, 0xa4, 0x9c, 0xa1, 0x20, 0xa8, 0x60,
+	0xa8, 0xa4, 0xa2, 0x31, 0x7a, 0x0d, 0xfb, 0x3e, 0x4f, 0xe3, 0x80, 0xe6, 0x24, 0xa2, 0x21, 0x2b,
+	0x21, 0x2a, 0xb8, 0xbb, 0xd6, 0x2c, 0x1a, 0x32, 0x74, 0x0c, 0xed, 0x98, 0xb1, 0x84, 0x70, 0xbf,
+	0x64, 0xa8, 0xe0, 0x56, 0xb1, 0x35, 0xfd, 0x27, 0x04, 0x9d, 0x0d, 0x04, 0xe5, 0x44, 0x5f, 0x6f,
+	0x03, 0x3e, 0x27, 0x0b, 0x96, 0x97, 0xdc, 0x14, 0xac, 0x54, 0xca, 0x88, 0xe5, 0xfd, 0x9f, 0x12,
+	0x74, 0xf5, 0x2f, 0x34, 0xdb, 0x1d, 0x9e, 0xb0, 0x2a, 0x2c, 0xe6, 0x6b, 0x56, 0xdd, 0xd6, 0x8a,
+	0xe9, 0x6f, 0xd1, 0x93, 0xff, 0x4d, 0xef, 0x8f, 0xff, 0xab, 0x68, 0xc8, 0x1e, 0xb2, 0x35, 0x94,
+	0x72, 0xfd, 0x74, 0xe9, 0xf6, 0xe6, 0x77, 0x5f, 0xc1, 0xa9, 0x1e, 0x70, 0x16, 0x65, 0x43, 0x9e,
+	0xce, 0x45, 0x14, 0xb1, 0x79, 0xc6, 0xfc, 0x8b, 0x44, 0x84, 0x2e, 0x4b, 0xee, 0x59, 0xb2, 0xa3,
+	0xcb, 0xfe, 0xee, 0xdd, 0xdc, 0xec, 0x7d, 0x05, 0xaa, 0x1e, 0x88, 0xf9, 0xc2, 0x5d, 0xb0, 0xe5,
+	0x8e, 0x1e, 0x82, 0x31, 0x74, 0x1d, 0x1e, 0xdd, 0xed, 0x26, 0xed, 0xed, 0x37, 0x09, 0x8e, 0xfe,
+	0x76, 0x04, 0x69, 0x70, 0xf4, 0xd1, 0x1a, 0x59, 0xf6, 0xd4, 0x22, 0x13, 0xc3, 0x75, 0xcf, 0x2f,
+	0x0d, 0xe2, 0xcd, 0x1c, 0x43, 0x7d, 0x86, 0xf6, 0xa1, 0xe3, 0xd8, 0xae, 0xe9, 0x99, 0xb6, 0xa5,
+	0x36, 0x50, 0x07, 0x64, 0xfd, 0xc3, 0xb9, 0xa7, 0x36, 0xd1, 0x29, 0x9c, 0xe8, 0x63, 0xd3, 0xb0,
+	0x3c, 0x32, 0x34, 0x5d, 0xdd, 0xb6, 0x2c, 0x43, 0xf7, 0x8c, 0x21, 0xb9, 0xc0, 0xf6, 0x84, 0xb8,
+	0x06, 0xfe, 0x64, 0x60, 0x55, 0x46, 0x5d, 0x68, 0x3b, 0xd8, 0xbe, 0x30, 0xc7, 0x86, 0xba, 0x87,
+	0x8e, 0xe1, 0x85, 0x3e, 0xb6, 0xf5, 0x11, 0x71, 0x47, 0xc6, 0x94, 0x0c, 0x0d, 0xaf, 0x3c, 0xa1,
+	0xb6, 0x8a, 0x50, 0xc7, 0xb4, 0x2e, 0xd5, 0xce, 0x6d, 0xab, 0x7c, 0x50, 0xdf, 0xff, 0x0a, 0x00,
+	0x00, 0xff, 0xff, 0x98, 0x0c, 0xc0, 0x97, 0x63, 0x05, 0x00, 0x00,
 }

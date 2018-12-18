@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+enum CoordinatorMessageType {
+  UNKNOWN_MESSAGE_TYPE = 0;
+  WELCOME_SERVER = 1;
+  WELCOME_CLIENT = 2;
+  CONNECT = 3;
+  WEBRTC_SUPPORTED = 4;
+  WEBRTC_OFFER = 5;
+  WEBRTC_ANSWER = 6;
+  WEBRTC_ICE_CANDIDATE = 7;
+}
+
+message CoordinatorMessage {
+    CoordinatorMessageType type = 1;
+}
+
+message WelcomeServerMessage {
+    CoordinatorMessageType type = 1;
+    string alias = 2;
+    repeated string peers = 3;
+}
+
+message WelcomeClientMessage {
+    CoordinatorMessageType type = 1;
+    string alias = 2;
+}
+
+message ConnectMessage {
+    CoordinatorMessageType type = 1;
+    string toAlias = 2;
+}
+
+message WebRtcMessage {
+    CoordinatorMessageType type = 1;
+    string alias = 2;
+    string toAlias = 3;
+    string sdp = 4;
+}
