@@ -23,33 +23,27 @@ const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 type WorldCommMessageType int32
 
 const (
-	WorldCommMessageType_UNKNOWN_MESSAGE_TYPE            WorldCommMessageType = 0
-	WorldCommMessageType_POSITION                        WorldCommMessageType = 2
-	WorldCommMessageType_CHAT                            WorldCommMessageType = 3
-	WorldCommMessageType_CLIENT_DISCONNECTED_FROM_SERVER WorldCommMessageType = 4
-	WorldCommMessageType_PROFILE                         WorldCommMessageType = 5
-	WorldCommMessageType_CLOCK_SKEW_DETECTED             WorldCommMessageType = 6
-	WorldCommMessageType_PING                            WorldCommMessageType = 8
+	WorldCommMessageType_UNKNOWN_MESSAGE_TYPE WorldCommMessageType = 0
+	WorldCommMessageType_PING                 WorldCommMessageType = 1
+	WorldCommMessageType_ADD_TOPIC            WorldCommMessageType = 2
+	WorldCommMessageType_REMOVE_TOPIC         WorldCommMessageType = 3
+	WorldCommMessageType_TOPIC                WorldCommMessageType = 4
 )
 
 var WorldCommMessageType_name = map[int32]string{
 	0: "UNKNOWN_MESSAGE_TYPE",
-	2: "POSITION",
-	3: "CHAT",
-	4: "CLIENT_DISCONNECTED_FROM_SERVER",
-	5: "PROFILE",
-	6: "CLOCK_SKEW_DETECTED",
-	8: "PING",
+	1: "PING",
+	2: "ADD_TOPIC",
+	3: "REMOVE_TOPIC",
+	4: "TOPIC",
 }
 
 var WorldCommMessageType_value = map[string]int32{
-	"UNKNOWN_MESSAGE_TYPE":            0,
-	"POSITION":                        2,
-	"CHAT":                            3,
-	"CLIENT_DISCONNECTED_FROM_SERVER": 4,
-	"PROFILE":                         5,
-	"CLOCK_SKEW_DETECTED":             6,
-	"PING":                            8,
+	"UNKNOWN_MESSAGE_TYPE": 0,
+	"PING":                 1,
+	"ADD_TOPIC":            2,
+	"REMOVE_TOPIC":         3,
+	"TOPIC":                4,
 }
 
 func (x WorldCommMessageType) String() string {
@@ -107,409 +101,6 @@ func (m *WorldCommMessage) GetTime() float64 {
 	return 0
 }
 
-type PositionMessage struct {
-	Type                 WorldCommMessageType `protobuf:"varint,1,opt,name=type,proto3,enum=WorldCommMessageType" json:"type,omitempty"`
-	Time                 float64              `protobuf:"fixed64,2,opt,name=time,proto3" json:"time,omitempty"`
-	PositionX            float32              `protobuf:"fixed32,3,opt,name=position_x,json=positionX,proto3" json:"position_x,omitempty"`
-	PositionY            float32              `protobuf:"fixed32,4,opt,name=position_y,json=positionY,proto3" json:"position_y,omitempty"`
-	PositionZ            float32              `protobuf:"fixed32,5,opt,name=position_z,json=positionZ,proto3" json:"position_z,omitempty"`
-	RotationX            float32              `protobuf:"fixed32,6,opt,name=rotation_x,json=rotationX,proto3" json:"rotation_x,omitempty"`
-	RotationY            float32              `protobuf:"fixed32,7,opt,name=rotation_y,json=rotationY,proto3" json:"rotation_y,omitempty"`
-	RotationZ            float32              `protobuf:"fixed32,8,opt,name=rotation_z,json=rotationZ,proto3" json:"rotation_z,omitempty"`
-	RotationW            float32              `protobuf:"fixed32,9,opt,name=rotation_w,json=rotationW,proto3" json:"rotation_w,omitempty"`
-	Alias                uint32               `protobuf:"varint,10,opt,name=alias,proto3" json:"alias,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
-}
-
-func (m *PositionMessage) Reset()         { *m = PositionMessage{} }
-func (m *PositionMessage) String() string { return proto.CompactTextString(m) }
-func (*PositionMessage) ProtoMessage()    {}
-func (*PositionMessage) Descriptor() ([]byte, []int) {
-	return fileDescriptor_966603bf5abd3632, []int{1}
-}
-
-func (m *PositionMessage) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_PositionMessage.Unmarshal(m, b)
-}
-func (m *PositionMessage) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_PositionMessage.Marshal(b, m, deterministic)
-}
-func (m *PositionMessage) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_PositionMessage.Merge(m, src)
-}
-func (m *PositionMessage) XXX_Size() int {
-	return xxx_messageInfo_PositionMessage.Size(m)
-}
-func (m *PositionMessage) XXX_DiscardUnknown() {
-	xxx_messageInfo_PositionMessage.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_PositionMessage proto.InternalMessageInfo
-
-func (m *PositionMessage) GetType() WorldCommMessageType {
-	if m != nil {
-		return m.Type
-	}
-	return WorldCommMessageType_UNKNOWN_MESSAGE_TYPE
-}
-
-func (m *PositionMessage) GetTime() float64 {
-	if m != nil {
-		return m.Time
-	}
-	return 0
-}
-
-func (m *PositionMessage) GetPositionX() float32 {
-	if m != nil {
-		return m.PositionX
-	}
-	return 0
-}
-
-func (m *PositionMessage) GetPositionY() float32 {
-	if m != nil {
-		return m.PositionY
-	}
-	return 0
-}
-
-func (m *PositionMessage) GetPositionZ() float32 {
-	if m != nil {
-		return m.PositionZ
-	}
-	return 0
-}
-
-func (m *PositionMessage) GetRotationX() float32 {
-	if m != nil {
-		return m.RotationX
-	}
-	return 0
-}
-
-func (m *PositionMessage) GetRotationY() float32 {
-	if m != nil {
-		return m.RotationY
-	}
-	return 0
-}
-
-func (m *PositionMessage) GetRotationZ() float32 {
-	if m != nil {
-		return m.RotationZ
-	}
-	return 0
-}
-
-func (m *PositionMessage) GetRotationW() float32 {
-	if m != nil {
-		return m.RotationW
-	}
-	return 0
-}
-
-func (m *PositionMessage) GetAlias() uint32 {
-	if m != nil {
-		return m.Alias
-	}
-	return 0
-}
-
-type ProfileMessage struct {
-	Type                 WorldCommMessageType `protobuf:"varint,1,opt,name=type,proto3,enum=WorldCommMessageType" json:"type,omitempty"`
-	Time                 float64              `protobuf:"fixed64,2,opt,name=time,proto3" json:"time,omitempty"`
-	PositionX            float32              `protobuf:"fixed32,3,opt,name=position_x,json=positionX,proto3" json:"position_x,omitempty"`
-	PositionZ            float32              `protobuf:"fixed32,4,opt,name=position_z,json=positionZ,proto3" json:"position_z,omitempty"`
-	AvatarType           string               `protobuf:"bytes,5,opt,name=avatar_type,json=avatarType,proto3" json:"avatar_type,omitempty"`
-	DisplayName          string               `protobuf:"bytes,6,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
-	PeerId               string               `protobuf:"bytes,7,opt,name=peer_id,json=peerId,proto3" json:"peer_id,omitempty"`
-	Alias                uint32               `protobuf:"varint,8,opt,name=alias,proto3" json:"alias,omitempty"`
-	PublicKey            string               `protobuf:"bytes,9,opt,name=public_key,json=publicKey,proto3" json:"public_key,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
-}
-
-func (m *ProfileMessage) Reset()         { *m = ProfileMessage{} }
-func (m *ProfileMessage) String() string { return proto.CompactTextString(m) }
-func (*ProfileMessage) ProtoMessage()    {}
-func (*ProfileMessage) Descriptor() ([]byte, []int) {
-	return fileDescriptor_966603bf5abd3632, []int{2}
-}
-
-func (m *ProfileMessage) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ProfileMessage.Unmarshal(m, b)
-}
-func (m *ProfileMessage) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ProfileMessage.Marshal(b, m, deterministic)
-}
-func (m *ProfileMessage) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ProfileMessage.Merge(m, src)
-}
-func (m *ProfileMessage) XXX_Size() int {
-	return xxx_messageInfo_ProfileMessage.Size(m)
-}
-func (m *ProfileMessage) XXX_DiscardUnknown() {
-	xxx_messageInfo_ProfileMessage.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ProfileMessage proto.InternalMessageInfo
-
-func (m *ProfileMessage) GetType() WorldCommMessageType {
-	if m != nil {
-		return m.Type
-	}
-	return WorldCommMessageType_UNKNOWN_MESSAGE_TYPE
-}
-
-func (m *ProfileMessage) GetTime() float64 {
-	if m != nil {
-		return m.Time
-	}
-	return 0
-}
-
-func (m *ProfileMessage) GetPositionX() float32 {
-	if m != nil {
-		return m.PositionX
-	}
-	return 0
-}
-
-func (m *ProfileMessage) GetPositionZ() float32 {
-	if m != nil {
-		return m.PositionZ
-	}
-	return 0
-}
-
-func (m *ProfileMessage) GetAvatarType() string {
-	if m != nil {
-		return m.AvatarType
-	}
-	return ""
-}
-
-func (m *ProfileMessage) GetDisplayName() string {
-	if m != nil {
-		return m.DisplayName
-	}
-	return ""
-}
-
-func (m *ProfileMessage) GetPeerId() string {
-	if m != nil {
-		return m.PeerId
-	}
-	return ""
-}
-
-func (m *ProfileMessage) GetAlias() uint32 {
-	if m != nil {
-		return m.Alias
-	}
-	return 0
-}
-
-func (m *ProfileMessage) GetPublicKey() string {
-	if m != nil {
-		return m.PublicKey
-	}
-	return ""
-}
-
-type ChatMessage struct {
-	Type                 WorldCommMessageType `protobuf:"varint,1,opt,name=type,proto3,enum=WorldCommMessageType" json:"type,omitempty"`
-	Time                 float64              `protobuf:"fixed64,2,opt,name=time,proto3" json:"time,omitempty"`
-	MessageId            string               `protobuf:"bytes,3,opt,name=message_id,json=messageId,proto3" json:"message_id,omitempty"`
-	PositionX            float32              `protobuf:"fixed32,4,opt,name=position_x,json=positionX,proto3" json:"position_x,omitempty"`
-	PositionZ            float32              `protobuf:"fixed32,5,opt,name=position_z,json=positionZ,proto3" json:"position_z,omitempty"`
-	Text                 string               `protobuf:"bytes,6,opt,name=text,proto3" json:"text,omitempty"`
-	Alias                uint32               `protobuf:"varint,7,opt,name=alias,proto3" json:"alias,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
-}
-
-func (m *ChatMessage) Reset()         { *m = ChatMessage{} }
-func (m *ChatMessage) String() string { return proto.CompactTextString(m) }
-func (*ChatMessage) ProtoMessage()    {}
-func (*ChatMessage) Descriptor() ([]byte, []int) {
-	return fileDescriptor_966603bf5abd3632, []int{3}
-}
-
-func (m *ChatMessage) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ChatMessage.Unmarshal(m, b)
-}
-func (m *ChatMessage) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ChatMessage.Marshal(b, m, deterministic)
-}
-func (m *ChatMessage) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ChatMessage.Merge(m, src)
-}
-func (m *ChatMessage) XXX_Size() int {
-	return xxx_messageInfo_ChatMessage.Size(m)
-}
-func (m *ChatMessage) XXX_DiscardUnknown() {
-	xxx_messageInfo_ChatMessage.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ChatMessage proto.InternalMessageInfo
-
-func (m *ChatMessage) GetType() WorldCommMessageType {
-	if m != nil {
-		return m.Type
-	}
-	return WorldCommMessageType_UNKNOWN_MESSAGE_TYPE
-}
-
-func (m *ChatMessage) GetTime() float64 {
-	if m != nil {
-		return m.Time
-	}
-	return 0
-}
-
-func (m *ChatMessage) GetMessageId() string {
-	if m != nil {
-		return m.MessageId
-	}
-	return ""
-}
-
-func (m *ChatMessage) GetPositionX() float32 {
-	if m != nil {
-		return m.PositionX
-	}
-	return 0
-}
-
-func (m *ChatMessage) GetPositionZ() float32 {
-	if m != nil {
-		return m.PositionZ
-	}
-	return 0
-}
-
-func (m *ChatMessage) GetText() string {
-	if m != nil {
-		return m.Text
-	}
-	return ""
-}
-
-func (m *ChatMessage) GetAlias() uint32 {
-	if m != nil {
-		return m.Alias
-	}
-	return 0
-}
-
-type ClientDisconnectedFromServerMessage struct {
-	Type                 WorldCommMessageType `protobuf:"varint,1,opt,name=type,proto3,enum=WorldCommMessageType" json:"type,omitempty"`
-	Time                 float64              `protobuf:"fixed64,2,opt,name=time,proto3" json:"time,omitempty"`
-	Alias                uint32               `protobuf:"varint,3,opt,name=alias,proto3" json:"alias,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
-}
-
-func (m *ClientDisconnectedFromServerMessage) Reset()         { *m = ClientDisconnectedFromServerMessage{} }
-func (m *ClientDisconnectedFromServerMessage) String() string { return proto.CompactTextString(m) }
-func (*ClientDisconnectedFromServerMessage) ProtoMessage()    {}
-func (*ClientDisconnectedFromServerMessage) Descriptor() ([]byte, []int) {
-	return fileDescriptor_966603bf5abd3632, []int{4}
-}
-
-func (m *ClientDisconnectedFromServerMessage) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ClientDisconnectedFromServerMessage.Unmarshal(m, b)
-}
-func (m *ClientDisconnectedFromServerMessage) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ClientDisconnectedFromServerMessage.Marshal(b, m, deterministic)
-}
-func (m *ClientDisconnectedFromServerMessage) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ClientDisconnectedFromServerMessage.Merge(m, src)
-}
-func (m *ClientDisconnectedFromServerMessage) XXX_Size() int {
-	return xxx_messageInfo_ClientDisconnectedFromServerMessage.Size(m)
-}
-func (m *ClientDisconnectedFromServerMessage) XXX_DiscardUnknown() {
-	xxx_messageInfo_ClientDisconnectedFromServerMessage.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ClientDisconnectedFromServerMessage proto.InternalMessageInfo
-
-func (m *ClientDisconnectedFromServerMessage) GetType() WorldCommMessageType {
-	if m != nil {
-		return m.Type
-	}
-	return WorldCommMessageType_UNKNOWN_MESSAGE_TYPE
-}
-
-func (m *ClientDisconnectedFromServerMessage) GetTime() float64 {
-	if m != nil {
-		return m.Time
-	}
-	return 0
-}
-
-func (m *ClientDisconnectedFromServerMessage) GetAlias() uint32 {
-	if m != nil {
-		return m.Alias
-	}
-	return 0
-}
-
-type ClockSkewMessage struct {
-	Type                 WorldCommMessageType `protobuf:"varint,1,opt,name=type,proto3,enum=WorldCommMessageType" json:"type,omitempty"`
-	Time                 float64              `protobuf:"fixed64,2,opt,name=time,proto3" json:"time,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
-}
-
-func (m *ClockSkewMessage) Reset()         { *m = ClockSkewMessage{} }
-func (m *ClockSkewMessage) String() string { return proto.CompactTextString(m) }
-func (*ClockSkewMessage) ProtoMessage()    {}
-func (*ClockSkewMessage) Descriptor() ([]byte, []int) {
-	return fileDescriptor_966603bf5abd3632, []int{5}
-}
-
-func (m *ClockSkewMessage) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ClockSkewMessage.Unmarshal(m, b)
-}
-func (m *ClockSkewMessage) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ClockSkewMessage.Marshal(b, m, deterministic)
-}
-func (m *ClockSkewMessage) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ClockSkewMessage.Merge(m, src)
-}
-func (m *ClockSkewMessage) XXX_Size() int {
-	return xxx_messageInfo_ClockSkewMessage.Size(m)
-}
-func (m *ClockSkewMessage) XXX_DiscardUnknown() {
-	xxx_messageInfo_ClockSkewMessage.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ClockSkewMessage proto.InternalMessageInfo
-
-func (m *ClockSkewMessage) GetType() WorldCommMessageType {
-	if m != nil {
-		return m.Type
-	}
-	return WorldCommMessageType_UNKNOWN_MESSAGE_TYPE
-}
-
-func (m *ClockSkewMessage) GetTime() float64 {
-	if m != nil {
-		return m.Time
-	}
-	return 0
-}
-
 type PingMessage struct {
 	Type                 WorldCommMessageType `protobuf:"varint,1,opt,name=type,proto3,enum=WorldCommMessageType" json:"type,omitempty"`
 	Time                 float64              `protobuf:"fixed64,2,opt,name=time,proto3" json:"time,omitempty"`
@@ -522,7 +113,7 @@ func (m *PingMessage) Reset()         { *m = PingMessage{} }
 func (m *PingMessage) String() string { return proto.CompactTextString(m) }
 func (*PingMessage) ProtoMessage()    {}
 func (*PingMessage) Descriptor() ([]byte, []int) {
-	return fileDescriptor_966603bf5abd3632, []int{6}
+	return fileDescriptor_966603bf5abd3632, []int{1}
 }
 
 func (m *PingMessage) XXX_Unmarshal(b []byte) error {
@@ -557,53 +148,418 @@ func (m *PingMessage) GetTime() float64 {
 	return 0
 }
 
+type AddTopicMessage struct {
+	Type                 WorldCommMessageType `protobuf:"varint,1,opt,name=type,proto3,enum=WorldCommMessageType" json:"type,omitempty"`
+	Time                 float64              `protobuf:"fixed64,2,opt,name=time,proto3" json:"time,omitempty"`
+	Topic                string               `protobuf:"bytes,3,opt,name=topic,proto3" json:"topic,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
+}
+
+func (m *AddTopicMessage) Reset()         { *m = AddTopicMessage{} }
+func (m *AddTopicMessage) String() string { return proto.CompactTextString(m) }
+func (*AddTopicMessage) ProtoMessage()    {}
+func (*AddTopicMessage) Descriptor() ([]byte, []int) {
+	return fileDescriptor_966603bf5abd3632, []int{2}
+}
+
+func (m *AddTopicMessage) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_AddTopicMessage.Unmarshal(m, b)
+}
+func (m *AddTopicMessage) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_AddTopicMessage.Marshal(b, m, deterministic)
+}
+func (m *AddTopicMessage) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AddTopicMessage.Merge(m, src)
+}
+func (m *AddTopicMessage) XXX_Size() int {
+	return xxx_messageInfo_AddTopicMessage.Size(m)
+}
+func (m *AddTopicMessage) XXX_DiscardUnknown() {
+	xxx_messageInfo_AddTopicMessage.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AddTopicMessage proto.InternalMessageInfo
+
+func (m *AddTopicMessage) GetType() WorldCommMessageType {
+	if m != nil {
+		return m.Type
+	}
+	return WorldCommMessageType_UNKNOWN_MESSAGE_TYPE
+}
+
+func (m *AddTopicMessage) GetTime() float64 {
+	if m != nil {
+		return m.Time
+	}
+	return 0
+}
+
+func (m *AddTopicMessage) GetTopic() string {
+	if m != nil {
+		return m.Topic
+	}
+	return ""
+}
+
+type RemoveTopicMessage struct {
+	Type                 WorldCommMessageType `protobuf:"varint,1,opt,name=type,proto3,enum=WorldCommMessageType" json:"type,omitempty"`
+	Time                 float64              `protobuf:"fixed64,2,opt,name=time,proto3" json:"time,omitempty"`
+	Topic                string               `protobuf:"bytes,3,opt,name=topic,proto3" json:"topic,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
+}
+
+func (m *RemoveTopicMessage) Reset()         { *m = RemoveTopicMessage{} }
+func (m *RemoveTopicMessage) String() string { return proto.CompactTextString(m) }
+func (*RemoveTopicMessage) ProtoMessage()    {}
+func (*RemoveTopicMessage) Descriptor() ([]byte, []int) {
+	return fileDescriptor_966603bf5abd3632, []int{3}
+}
+
+func (m *RemoveTopicMessage) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_RemoveTopicMessage.Unmarshal(m, b)
+}
+func (m *RemoveTopicMessage) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_RemoveTopicMessage.Marshal(b, m, deterministic)
+}
+func (m *RemoveTopicMessage) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RemoveTopicMessage.Merge(m, src)
+}
+func (m *RemoveTopicMessage) XXX_Size() int {
+	return xxx_messageInfo_RemoveTopicMessage.Size(m)
+}
+func (m *RemoveTopicMessage) XXX_DiscardUnknown() {
+	xxx_messageInfo_RemoveTopicMessage.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_RemoveTopicMessage proto.InternalMessageInfo
+
+func (m *RemoveTopicMessage) GetType() WorldCommMessageType {
+	if m != nil {
+		return m.Type
+	}
+	return WorldCommMessageType_UNKNOWN_MESSAGE_TYPE
+}
+
+func (m *RemoveTopicMessage) GetTime() float64 {
+	if m != nil {
+		return m.Time
+	}
+	return 0
+}
+
+func (m *RemoveTopicMessage) GetTopic() string {
+	if m != nil {
+		return m.Topic
+	}
+	return ""
+}
+
+type TopicMessage struct {
+	Type                 WorldCommMessageType `protobuf:"varint,1,opt,name=type,proto3,enum=WorldCommMessageType" json:"type,omitempty"`
+	Time                 float64              `protobuf:"fixed64,2,opt,name=time,proto3" json:"time,omitempty"`
+	Topic                string               `protobuf:"bytes,3,opt,name=topic,proto3" json:"topic,omitempty"`
+	Alias                string               `protobuf:"bytes,4,opt,name=alias,proto3" json:"alias,omitempty"`
+	Body                 []byte               `protobuf:"bytes,5,opt,name=body,proto3" json:"body,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
+}
+
+func (m *TopicMessage) Reset()         { *m = TopicMessage{} }
+func (m *TopicMessage) String() string { return proto.CompactTextString(m) }
+func (*TopicMessage) ProtoMessage()    {}
+func (*TopicMessage) Descriptor() ([]byte, []int) {
+	return fileDescriptor_966603bf5abd3632, []int{4}
+}
+
+func (m *TopicMessage) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_TopicMessage.Unmarshal(m, b)
+}
+func (m *TopicMessage) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_TopicMessage.Marshal(b, m, deterministic)
+}
+func (m *TopicMessage) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_TopicMessage.Merge(m, src)
+}
+func (m *TopicMessage) XXX_Size() int {
+	return xxx_messageInfo_TopicMessage.Size(m)
+}
+func (m *TopicMessage) XXX_DiscardUnknown() {
+	xxx_messageInfo_TopicMessage.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_TopicMessage proto.InternalMessageInfo
+
+func (m *TopicMessage) GetType() WorldCommMessageType {
+	if m != nil {
+		return m.Type
+	}
+	return WorldCommMessageType_UNKNOWN_MESSAGE_TYPE
+}
+
+func (m *TopicMessage) GetTime() float64 {
+	if m != nil {
+		return m.Time
+	}
+	return 0
+}
+
+func (m *TopicMessage) GetTopic() string {
+	if m != nil {
+		return m.Topic
+	}
+	return ""
+}
+
+func (m *TopicMessage) GetAlias() string {
+	if m != nil {
+		return m.Alias
+	}
+	return ""
+}
+
+func (m *TopicMessage) GetBody() []byte {
+	if m != nil {
+		return m.Body
+	}
+	return nil
+}
+
+type PositionData struct {
+	PositionX            float32  `protobuf:"fixed32,1,opt,name=position_x,json=positionX,proto3" json:"position_x,omitempty"`
+	PositionY            float32  `protobuf:"fixed32,2,opt,name=position_y,json=positionY,proto3" json:"position_y,omitempty"`
+	PositionZ            float32  `protobuf:"fixed32,3,opt,name=position_z,json=positionZ,proto3" json:"position_z,omitempty"`
+	RotationX            float32  `protobuf:"fixed32,4,opt,name=rotation_x,json=rotationX,proto3" json:"rotation_x,omitempty"`
+	RotationY            float32  `protobuf:"fixed32,5,opt,name=rotation_y,json=rotationY,proto3" json:"rotation_y,omitempty"`
+	RotationZ            float32  `protobuf:"fixed32,6,opt,name=rotation_z,json=rotationZ,proto3" json:"rotation_z,omitempty"`
+	RotationW            float32  `protobuf:"fixed32,7,opt,name=rotation_w,json=rotationW,proto3" json:"rotation_w,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *PositionData) Reset()         { *m = PositionData{} }
+func (m *PositionData) String() string { return proto.CompactTextString(m) }
+func (*PositionData) ProtoMessage()    {}
+func (*PositionData) Descriptor() ([]byte, []int) {
+	return fileDescriptor_966603bf5abd3632, []int{5}
+}
+
+func (m *PositionData) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_PositionData.Unmarshal(m, b)
+}
+func (m *PositionData) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_PositionData.Marshal(b, m, deterministic)
+}
+func (m *PositionData) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PositionData.Merge(m, src)
+}
+func (m *PositionData) XXX_Size() int {
+	return xxx_messageInfo_PositionData.Size(m)
+}
+func (m *PositionData) XXX_DiscardUnknown() {
+	xxx_messageInfo_PositionData.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PositionData proto.InternalMessageInfo
+
+func (m *PositionData) GetPositionX() float32 {
+	if m != nil {
+		return m.PositionX
+	}
+	return 0
+}
+
+func (m *PositionData) GetPositionY() float32 {
+	if m != nil {
+		return m.PositionY
+	}
+	return 0
+}
+
+func (m *PositionData) GetPositionZ() float32 {
+	if m != nil {
+		return m.PositionZ
+	}
+	return 0
+}
+
+func (m *PositionData) GetRotationX() float32 {
+	if m != nil {
+		return m.RotationX
+	}
+	return 0
+}
+
+func (m *PositionData) GetRotationY() float32 {
+	if m != nil {
+		return m.RotationY
+	}
+	return 0
+}
+
+func (m *PositionData) GetRotationZ() float32 {
+	if m != nil {
+		return m.RotationZ
+	}
+	return 0
+}
+
+func (m *PositionData) GetRotationW() float32 {
+	if m != nil {
+		return m.RotationW
+	}
+	return 0
+}
+
+type ProfileData struct {
+	AvatarType           string   `protobuf:"bytes,1,opt,name=avatar_type,json=avatarType,proto3" json:"avatar_type,omitempty"`
+	DisplayName          string   `protobuf:"bytes,2,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
+	PublicKey            string   `protobuf:"bytes,3,opt,name=public_key,json=publicKey,proto3" json:"public_key,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ProfileData) Reset()         { *m = ProfileData{} }
+func (m *ProfileData) String() string { return proto.CompactTextString(m) }
+func (*ProfileData) ProtoMessage()    {}
+func (*ProfileData) Descriptor() ([]byte, []int) {
+	return fileDescriptor_966603bf5abd3632, []int{6}
+}
+
+func (m *ProfileData) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ProfileData.Unmarshal(m, b)
+}
+func (m *ProfileData) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ProfileData.Marshal(b, m, deterministic)
+}
+func (m *ProfileData) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ProfileData.Merge(m, src)
+}
+func (m *ProfileData) XXX_Size() int {
+	return xxx_messageInfo_ProfileData.Size(m)
+}
+func (m *ProfileData) XXX_DiscardUnknown() {
+	xxx_messageInfo_ProfileData.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ProfileData proto.InternalMessageInfo
+
+func (m *ProfileData) GetAvatarType() string {
+	if m != nil {
+		return m.AvatarType
+	}
+	return ""
+}
+
+func (m *ProfileData) GetDisplayName() string {
+	if m != nil {
+		return m.DisplayName
+	}
+	return ""
+}
+
+func (m *ProfileData) GetPublicKey() string {
+	if m != nil {
+		return m.PublicKey
+	}
+	return ""
+}
+
+type ChatData struct {
+	MessageId            string   `protobuf:"bytes,1,opt,name=message_id,json=messageId,proto3" json:"message_id,omitempty"`
+	Text                 string   `protobuf:"bytes,2,opt,name=text,proto3" json:"text,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ChatData) Reset()         { *m = ChatData{} }
+func (m *ChatData) String() string { return proto.CompactTextString(m) }
+func (*ChatData) ProtoMessage()    {}
+func (*ChatData) Descriptor() ([]byte, []int) {
+	return fileDescriptor_966603bf5abd3632, []int{7}
+}
+
+func (m *ChatData) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ChatData.Unmarshal(m, b)
+}
+func (m *ChatData) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ChatData.Marshal(b, m, deterministic)
+}
+func (m *ChatData) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ChatData.Merge(m, src)
+}
+func (m *ChatData) XXX_Size() int {
+	return xxx_messageInfo_ChatData.Size(m)
+}
+func (m *ChatData) XXX_DiscardUnknown() {
+	xxx_messageInfo_ChatData.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ChatData proto.InternalMessageInfo
+
+func (m *ChatData) GetMessageId() string {
+	if m != nil {
+		return m.MessageId
+	}
+	return ""
+}
+
+func (m *ChatData) GetText() string {
+	if m != nil {
+		return m.Text
+	}
+	return ""
+}
+
 func init() {
 	proto.RegisterEnum("WorldCommMessageType", WorldCommMessageType_name, WorldCommMessageType_value)
 	proto.RegisterType((*WorldCommMessage)(nil), "WorldCommMessage")
-	proto.RegisterType((*PositionMessage)(nil), "PositionMessage")
-	proto.RegisterType((*ProfileMessage)(nil), "ProfileMessage")
-	proto.RegisterType((*ChatMessage)(nil), "ChatMessage")
-	proto.RegisterType((*ClientDisconnectedFromServerMessage)(nil), "ClientDisconnectedFromServerMessage")
-	proto.RegisterType((*ClockSkewMessage)(nil), "ClockSkewMessage")
 	proto.RegisterType((*PingMessage)(nil), "PingMessage")
+	proto.RegisterType((*AddTopicMessage)(nil), "AddTopicMessage")
+	proto.RegisterType((*RemoveTopicMessage)(nil), "RemoveTopicMessage")
+	proto.RegisterType((*TopicMessage)(nil), "TopicMessage")
+	proto.RegisterType((*PositionData)(nil), "PositionData")
+	proto.RegisterType((*ProfileData)(nil), "ProfileData")
+	proto.RegisterType((*ChatData)(nil), "ChatData")
 }
 
 func init() { proto.RegisterFile("worldcomm.proto", fileDescriptor_966603bf5abd3632) }
 
 var fileDescriptor_966603bf5abd3632 = []byte{
-	// 539 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xbc, 0x94, 0xd1, 0x72, 0x93, 0x40,
-	0x14, 0x86, 0x25, 0xa1, 0x49, 0x38, 0xa9, 0x2d, 0xb3, 0xd6, 0x29, 0x37, 0x4e, 0x63, 0x7a, 0x13,
-	0xbd, 0xe8, 0x85, 0x3e, 0x41, 0x87, 0xd0, 0xca, 0x24, 0x01, 0xba, 0xa0, 0x69, 0x7a, 0xb3, 0xb3,
-	0x0d, 0x6b, 0xdd, 0x09, 0xb0, 0x0c, 0x60, 0x53, 0xf2, 0x2e, 0x8e, 0x8f, 0xe2, 0x43, 0xf8, 0x42,
-	0x0e, 0x90, 0xda, 0x10, 0x1d, 0xaf, 0x32, 0xde, 0xed, 0xfe, 0xff, 0xd9, 0xff, 0x9c, 0xfd, 0x60,
-	0x16, 0x0e, 0x97, 0x22, 0x09, 0xfc, 0xb9, 0x08, 0xc3, 0xb3, 0x38, 0x11, 0x99, 0xe8, 0x5f, 0x81,
-	0x3a, 0x2d, 0x24, 0x5d, 0x84, 0xe1, 0x84, 0xa5, 0x29, 0xbd, 0x63, 0xe8, 0x0d, 0xc8, 0x59, 0x1e,
-	0x33, 0x4d, 0xea, 0x49, 0x83, 0x83, 0x77, 0x2f, 0xcf, 0xb6, 0x0b, 0xbc, 0x3c, 0x66, 0xb8, 0x2c,
-	0x41, 0x08, 0xe4, 0x8c, 0x87, 0x4c, 0x6b, 0xf4, 0xa4, 0x81, 0x84, 0xcb, 0x75, 0xff, 0x47, 0x03,
-	0x0e, 0x1d, 0x91, 0xf2, 0x8c, 0x8b, 0x68, 0x37, 0x91, 0xe8, 0x15, 0x40, 0xbc, 0x4e, 0x24, 0x0f,
-	0x5a, 0xb3, 0x27, 0x0d, 0x1a, 0x58, 0x79, 0x54, 0xae, 0x6b, 0x76, 0xae, 0xc9, 0x75, 0x7b, 0x56,
-	0xb3, 0x57, 0xda, 0x5e, 0xdd, 0xbe, 0x29, 0xec, 0x44, 0x64, 0x74, 0x1d, 0xde, 0xaa, 0xec, 0x47,
-	0xe5, 0xba, 0x66, 0xe7, 0x5a, 0xbb, 0x6e, 0xcf, 0x6a, 0xf6, 0x4a, 0xeb, 0xd4, 0xed, 0x7a, 0xf8,
-	0x52, 0x53, 0xea, 0xf6, 0x14, 0x1d, 0xc1, 0x1e, 0x0d, 0x38, 0x4d, 0x35, 0xe8, 0x49, 0x83, 0xe7,
-	0xb8, 0xda, 0xf4, 0xbf, 0x37, 0xe0, 0xc0, 0x49, 0xc4, 0x67, 0x1e, 0xb0, 0xff, 0x0f, 0x70, 0xb5,
-	0x0d, 0xf0, 0x06, 0x9d, 0x40, 0x97, 0xde, 0xd3, 0x8c, 0x26, 0xa4, 0x9c, 0xa1, 0x20, 0xa8, 0x60,
-	0xa8, 0xa4, 0xa2, 0x31, 0x7a, 0x0d, 0xfb, 0x3e, 0x4f, 0xe3, 0x80, 0xe6, 0x24, 0xa2, 0x21, 0x2b,
-	0x21, 0x2a, 0xb8, 0xbb, 0xd6, 0x2c, 0x1a, 0x32, 0x74, 0x0c, 0xed, 0x98, 0xb1, 0x84, 0x70, 0xbf,
-	0x64, 0xa8, 0xe0, 0x56, 0xb1, 0x35, 0xfd, 0x27, 0x04, 0x9d, 0x0d, 0x04, 0xe5, 0x44, 0x5f, 0x6f,
-	0x03, 0x3e, 0x27, 0x0b, 0x96, 0x97, 0xdc, 0x14, 0xac, 0x54, 0xca, 0x88, 0xe5, 0xfd, 0x9f, 0x12,
-	0x74, 0xf5, 0x2f, 0x34, 0xdb, 0x1d, 0x9e, 0xb0, 0x2a, 0x2c, 0xe6, 0x6b, 0x56, 0xdd, 0xd6, 0x8a,
-	0xe9, 0x6f, 0xd1, 0x93, 0xff, 0x4d, 0xef, 0x8f, 0xff, 0xab, 0x68, 0xc8, 0x1e, 0xb2, 0x35, 0x94,
-	0x72, 0xfd, 0x74, 0xe9, 0xf6, 0xe6, 0x77, 0x5f, 0xc1, 0xa9, 0x1e, 0x70, 0x16, 0x65, 0x43, 0x9e,
-	0xce, 0x45, 0x14, 0xb1, 0x79, 0xc6, 0xfc, 0x8b, 0x44, 0x84, 0x2e, 0x4b, 0xee, 0x59, 0xb2, 0xa3,
-	0xcb, 0xfe, 0xee, 0xdd, 0xdc, 0xec, 0x7d, 0x05, 0xaa, 0x1e, 0x88, 0xf9, 0xc2, 0x5d, 0xb0, 0xe5,
-	0x8e, 0x1e, 0x82, 0x31, 0x74, 0x1d, 0x1e, 0xdd, 0xed, 0x26, 0xed, 0xed, 0x37, 0x09, 0x8e, 0xfe,
-	0x76, 0x04, 0x69, 0x70, 0xf4, 0xd1, 0x1a, 0x59, 0xf6, 0xd4, 0x22, 0x13, 0xc3, 0x75, 0xcf, 0x2f,
-	0x0d, 0xe2, 0xcd, 0x1c, 0x43, 0x7d, 0x86, 0xf6, 0xa1, 0xe3, 0xd8, 0xae, 0xe9, 0x99, 0xb6, 0xa5,
-	0x36, 0x50, 0x07, 0x64, 0xfd, 0xc3, 0xb9, 0xa7, 0x36, 0xd1, 0x29, 0x9c, 0xe8, 0x63, 0xd3, 0xb0,
-	0x3c, 0x32, 0x34, 0x5d, 0xdd, 0xb6, 0x2c, 0x43, 0xf7, 0x8c, 0x21, 0xb9, 0xc0, 0xf6, 0x84, 0xb8,
-	0x06, 0xfe, 0x64, 0x60, 0x55, 0x46, 0x5d, 0x68, 0x3b, 0xd8, 0xbe, 0x30, 0xc7, 0x86, 0xba, 0x87,
-	0x8e, 0xe1, 0x85, 0x3e, 0xb6, 0xf5, 0x11, 0x71, 0x47, 0xc6, 0x94, 0x0c, 0x0d, 0xaf, 0x3c, 0xa1,
-	0xb6, 0x8a, 0x50, 0xc7, 0xb4, 0x2e, 0xd5, 0xce, 0x6d, 0xab, 0x7c, 0x50, 0xdf, 0xff, 0x0a, 0x00,
-	0x00, 0xff, 0xff, 0x98, 0x0c, 0xc0, 0x97, 0x63, 0x05, 0x00, 0x00,
+	// 441 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x94, 0x41, 0x6f, 0xd3, 0x30,
+	0x14, 0xc7, 0x71, 0x97, 0x8e, 0xe5, 0x35, 0xb0, 0xc8, 0x2a, 0x52, 0x2e, 0x88, 0x92, 0x53, 0xe1,
+	0xb0, 0x03, 0x9c, 0x39, 0x54, 0x6d, 0x34, 0x55, 0xa3, 0x69, 0xf0, 0x0a, 0x5d, 0xb9, 0x44, 0x6e,
+	0xe3, 0x0e, 0x8b, 0xb8, 0x8e, 0x12, 0xb3, 0x2d, 0xfb, 0x0e, 0x7c, 0x4e, 0xbe, 0x06, 0x8a, 0xed,
+	0xa2, 0x06, 0xed, 0xb8, 0xdd, 0xde, 0xfb, 0xff, 0x9c, 0xff, 0x7b, 0x7e, 0x2f, 0x32, 0x9c, 0xde,
+	0xca, 0x32, 0xcf, 0x36, 0x52, 0x88, 0xb3, 0xa2, 0x94, 0x4a, 0x86, 0x5f, 0xc0, 0x5f, 0x36, 0xd2,
+	0x58, 0x0a, 0x31, 0x63, 0x55, 0x45, 0xaf, 0x19, 0x7e, 0x07, 0x8e, 0xaa, 0x0b, 0x16, 0xa0, 0x01,
+	0x1a, 0xbe, 0xfc, 0xf0, 0xea, 0xec, 0xff, 0x03, 0x8b, 0xba, 0x60, 0x44, 0x1f, 0xc1, 0x18, 0x1c,
+	0xc5, 0x05, 0x0b, 0x3a, 0x03, 0x34, 0x44, 0x44, 0xc7, 0xe1, 0x67, 0xe8, 0x25, 0x7c, 0x77, 0xfd,
+	0x48, 0x6e, 0x5b, 0x38, 0x1d, 0x65, 0xd9, 0x42, 0x16, 0x7c, 0xf3, 0x38, 0x8e, 0xb8, 0x0f, 0x5d,
+	0xd5, 0xd8, 0x05, 0x47, 0x03, 0x34, 0x74, 0x89, 0x49, 0x42, 0x0e, 0x98, 0x30, 0x21, 0x6f, 0xd8,
+	0xd3, 0x97, 0xfa, 0x8d, 0xc0, 0x7b, 0xf2, 0x2a, 0x8d, 0x4a, 0x73, 0x4e, 0xab, 0xc0, 0x31, 0xaa,
+	0x4e, 0x9a, 0xef, 0xd7, 0x32, 0xab, 0x83, 0xee, 0x00, 0x0d, 0x3d, 0xa2, 0xe3, 0xf0, 0x0f, 0x02,
+	0x2f, 0x91, 0x15, 0x57, 0x5c, 0xee, 0x26, 0x54, 0x51, 0xfc, 0x1a, 0xa0, 0xb0, 0x79, 0x7a, 0xa7,
+	0xbb, 0xea, 0x10, 0x77, 0xaf, 0x5c, 0xb5, 0x70, 0xad, 0x3b, 0x39, 0xc0, 0xab, 0x16, 0xbe, 0xd7,
+	0x3d, 0x1d, 0xe0, 0xef, 0x0d, 0x2e, 0xa5, 0xa2, 0xd6, 0xdc, 0x31, 0x78, 0xaf, 0x5c, 0xb5, 0xb0,
+	0x69, 0xf3, 0x00, 0xaf, 0x5a, 0xf8, 0x3e, 0x38, 0x6e, 0xe3, 0xb6, 0xf9, 0x6d, 0xf0, 0xbc, 0x8d,
+	0x97, 0x61, 0x01, 0xbd, 0xa4, 0x94, 0x5b, 0x9e, 0x33, 0x7d, 0xcf, 0x37, 0xd0, 0xa3, 0x37, 0x54,
+	0xd1, 0x32, 0xfd, 0x37, 0x7e, 0x97, 0x80, 0x91, 0x9a, 0x99, 0xe3, 0xb7, 0xe0, 0x65, 0xbc, 0x2a,
+	0x72, 0x5a, 0xa7, 0x3b, 0x6a, 0xa7, 0xee, 0x92, 0x9e, 0xd5, 0x62, 0x2a, 0x98, 0xbe, 0xed, 0xaf,
+	0x75, 0xce, 0x37, 0xe9, 0x4f, 0x56, 0xdb, 0x0d, 0xb8, 0x46, 0xb9, 0x60, 0x75, 0xf8, 0x09, 0x4e,
+	0xc6, 0x3f, 0xa8, 0xda, 0x8f, 0x55, 0x98, 0x85, 0xa6, 0x3c, 0xb3, 0xd5, 0x5c, 0xab, 0x4c, 0x33,
+	0xbd, 0x5a, 0x76, 0xa7, 0x6c, 0x11, 0x1d, 0xbf, 0xdf, 0x42, 0xff, 0xa1, 0x9f, 0x01, 0x07, 0xd0,
+	0xff, 0x1a, 0x5f, 0xc4, 0xf3, 0x65, 0x9c, 0xce, 0xa2, 0xcb, 0xcb, 0xd1, 0x79, 0x94, 0x2e, 0x56,
+	0x49, 0xe4, 0x3f, 0xc3, 0x27, 0xe0, 0x24, 0xd3, 0xf8, 0xdc, 0x47, 0xf8, 0x05, 0xb8, 0xa3, 0xc9,
+	0x24, 0x5d, 0xcc, 0x93, 0xe9, 0xd8, 0xef, 0x60, 0x1f, 0x3c, 0x12, 0xcd, 0xe6, 0xdf, 0x22, 0xab,
+	0x1c, 0x61, 0x17, 0xba, 0x26, 0x74, 0xd6, 0xc7, 0xfa, 0x35, 0xf8, 0xf8, 0x37, 0x00, 0x00, 0xff,
+	0xff, 0xd9, 0x90, 0x7a, 0xd4, 0x20, 0x04, 0x00, 0x00,
 }

@@ -2,12 +2,10 @@ syntax = "proto3";
 
 enum WorldCommMessageType {
   UNKNOWN_MESSAGE_TYPE = 0;
-  POSITION = 2;
-  CHAT = 3;
-  CLIENT_DISCONNECTED_FROM_SERVER = 4;
-  PROFILE = 5;
-  CLOCK_SKEW_DETECTED = 6;
-  PING = 8;
+  PING = 1;
+  ADD_TOPIC = 2;
+  REMOVE_TOPIC = 3;
+  TOPIC = 4;
 }
 
 message WorldCommMessage {
@@ -15,53 +13,48 @@ message WorldCommMessage {
     double time = 2;
 }
 
-message PositionMessage {
-    WorldCommMessageType type = 1;
-    double time = 2;
-    float position_x = 3;
-    float position_y = 4;
-    float position_z = 5;
-    float rotation_x = 6;
-    float rotation_y = 7;
-    float rotation_z = 8;
-    float rotation_w = 9;
-    uint32 alias = 10;
-}
-
-message ProfileMessage {
-    WorldCommMessageType type = 1;
-    double time = 2;
-    float position_x = 3;
-    float position_z = 4;
-    string avatar_type = 5;
-    string display_name = 6;
-    string peer_id = 7;
-    uint32 alias = 8;
-    string public_key = 9;
-}
-
-message ChatMessage {
-    WorldCommMessageType type = 1;
-    double time = 2;
-    string message_id = 3;
-    float position_x = 4;
-    float position_z = 5;
-    string text = 6;
-    uint32 alias = 7;
-}
-
-message ClientDisconnectedFromServerMessage {
-    WorldCommMessageType type = 1;
-    double time = 2;
-    uint32 alias = 3;
-}
-
-message ClockSkewMessage {
-    WorldCommMessageType type = 1;
-    double time = 2;
-}
-
 message PingMessage {
     WorldCommMessageType type = 1;
     double time = 2;
+}
+
+message AddTopicMessage {
+    WorldCommMessageType type = 1;
+    double time = 2;
+    string topic = 3;
+}
+
+message RemoveTopicMessage {
+    WorldCommMessageType type = 1;
+    double time = 2;
+    string topic = 3;
+}
+
+message TopicMessage {
+    WorldCommMessageType type = 1;
+    double time = 2;
+    string topic = 3;
+    string alias = 4;
+    bytes body = 5;
+}
+
+message PositionData {
+    float position_x = 1;
+    float position_y = 2;
+    float position_z = 3;
+    float rotation_x = 4;
+    float rotation_y = 5;
+    float rotation_z = 6;
+    float rotation_w = 7;
+}
+
+message ProfileData {
+    string avatar_type = 1;
+    string display_name = 2;
+    string public_key = 3;
+}
+
+message ChatData {
+    string message_id = 1;
+    string text = 2;
 }

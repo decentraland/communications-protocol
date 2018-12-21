@@ -27,210 +27,6 @@ export namespace WorldCommMessage {
   }
 }
 
-export class PositionMessage extends jspb.Message {
-  getType(): WorldCommMessageType;
-  setType(value: WorldCommMessageType): void;
-
-  getTime(): number;
-  setTime(value: number): void;
-
-  getPositionX(): number;
-  setPositionX(value: number): void;
-
-  getPositionY(): number;
-  setPositionY(value: number): void;
-
-  getPositionZ(): number;
-  setPositionZ(value: number): void;
-
-  getRotationX(): number;
-  setRotationX(value: number): void;
-
-  getRotationY(): number;
-  setRotationY(value: number): void;
-
-  getRotationZ(): number;
-  setRotationZ(value: number): void;
-
-  getRotationW(): number;
-  setRotationW(value: number): void;
-
-  getAlias(): number;
-  setAlias(value: number): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): PositionMessage.AsObject;
-  static toObject(includeInstance: boolean, msg: PositionMessage): PositionMessage.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: PositionMessage, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): PositionMessage;
-  static deserializeBinaryFromReader(message: PositionMessage, reader: jspb.BinaryReader): PositionMessage;
-}
-
-export namespace PositionMessage {
-  export type AsObject = {
-    type: WorldCommMessageType,
-    time: number,
-    positionX: number,
-    positionY: number,
-    positionZ: number,
-    rotationX: number,
-    rotationY: number,
-    rotationZ: number,
-    rotationW: number,
-    alias: number,
-  }
-}
-
-export class ProfileMessage extends jspb.Message {
-  getType(): WorldCommMessageType;
-  setType(value: WorldCommMessageType): void;
-
-  getTime(): number;
-  setTime(value: number): void;
-
-  getPositionX(): number;
-  setPositionX(value: number): void;
-
-  getPositionZ(): number;
-  setPositionZ(value: number): void;
-
-  getAvatarType(): string;
-  setAvatarType(value: string): void;
-
-  getDisplayName(): string;
-  setDisplayName(value: string): void;
-
-  getPeerId(): string;
-  setPeerId(value: string): void;
-
-  getAlias(): number;
-  setAlias(value: number): void;
-
-  getPublicKey(): string;
-  setPublicKey(value: string): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ProfileMessage.AsObject;
-  static toObject(includeInstance: boolean, msg: ProfileMessage): ProfileMessage.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: ProfileMessage, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ProfileMessage;
-  static deserializeBinaryFromReader(message: ProfileMessage, reader: jspb.BinaryReader): ProfileMessage;
-}
-
-export namespace ProfileMessage {
-  export type AsObject = {
-    type: WorldCommMessageType,
-    time: number,
-    positionX: number,
-    positionZ: number,
-    avatarType: string,
-    displayName: string,
-    peerId: string,
-    alias: number,
-    publicKey: string,
-  }
-}
-
-export class ChatMessage extends jspb.Message {
-  getType(): WorldCommMessageType;
-  setType(value: WorldCommMessageType): void;
-
-  getTime(): number;
-  setTime(value: number): void;
-
-  getMessageId(): string;
-  setMessageId(value: string): void;
-
-  getPositionX(): number;
-  setPositionX(value: number): void;
-
-  getPositionZ(): number;
-  setPositionZ(value: number): void;
-
-  getText(): string;
-  setText(value: string): void;
-
-  getAlias(): number;
-  setAlias(value: number): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ChatMessage.AsObject;
-  static toObject(includeInstance: boolean, msg: ChatMessage): ChatMessage.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: ChatMessage, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ChatMessage;
-  static deserializeBinaryFromReader(message: ChatMessage, reader: jspb.BinaryReader): ChatMessage;
-}
-
-export namespace ChatMessage {
-  export type AsObject = {
-    type: WorldCommMessageType,
-    time: number,
-    messageId: string,
-    positionX: number,
-    positionZ: number,
-    text: string,
-    alias: number,
-  }
-}
-
-export class ClientDisconnectedFromServerMessage extends jspb.Message {
-  getType(): WorldCommMessageType;
-  setType(value: WorldCommMessageType): void;
-
-  getTime(): number;
-  setTime(value: number): void;
-
-  getAlias(): number;
-  setAlias(value: number): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ClientDisconnectedFromServerMessage.AsObject;
-  static toObject(includeInstance: boolean, msg: ClientDisconnectedFromServerMessage): ClientDisconnectedFromServerMessage.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: ClientDisconnectedFromServerMessage, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ClientDisconnectedFromServerMessage;
-  static deserializeBinaryFromReader(message: ClientDisconnectedFromServerMessage, reader: jspb.BinaryReader): ClientDisconnectedFromServerMessage;
-}
-
-export namespace ClientDisconnectedFromServerMessage {
-  export type AsObject = {
-    type: WorldCommMessageType,
-    time: number,
-    alias: number,
-  }
-}
-
-export class ClockSkewMessage extends jspb.Message {
-  getType(): WorldCommMessageType;
-  setType(value: WorldCommMessageType): void;
-
-  getTime(): number;
-  setTime(value: number): void;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ClockSkewMessage.AsObject;
-  static toObject(includeInstance: boolean, msg: ClockSkewMessage): ClockSkewMessage.AsObject;
-  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: ClockSkewMessage, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ClockSkewMessage;
-  static deserializeBinaryFromReader(message: ClockSkewMessage, reader: jspb.BinaryReader): ClockSkewMessage;
-}
-
-export namespace ClockSkewMessage {
-  export type AsObject = {
-    type: WorldCommMessageType,
-    time: number,
-  }
-}
-
 export class PingMessage extends jspb.Message {
   getType(): WorldCommMessageType;
   setType(value: WorldCommMessageType): void;
@@ -255,13 +51,201 @@ export namespace PingMessage {
   }
 }
 
+export class AddTopicMessage extends jspb.Message {
+  getType(): WorldCommMessageType;
+  setType(value: WorldCommMessageType): void;
+
+  getTime(): number;
+  setTime(value: number): void;
+
+  getTopic(): string;
+  setTopic(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AddTopicMessage.AsObject;
+  static toObject(includeInstance: boolean, msg: AddTopicMessage): AddTopicMessage.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: AddTopicMessage, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddTopicMessage;
+  static deserializeBinaryFromReader(message: AddTopicMessage, reader: jspb.BinaryReader): AddTopicMessage;
+}
+
+export namespace AddTopicMessage {
+  export type AsObject = {
+    type: WorldCommMessageType,
+    time: number,
+    topic: string,
+  }
+}
+
+export class RemoveTopicMessage extends jspb.Message {
+  getType(): WorldCommMessageType;
+  setType(value: WorldCommMessageType): void;
+
+  getTime(): number;
+  setTime(value: number): void;
+
+  getTopic(): string;
+  setTopic(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): RemoveTopicMessage.AsObject;
+  static toObject(includeInstance: boolean, msg: RemoveTopicMessage): RemoveTopicMessage.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: RemoveTopicMessage, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): RemoveTopicMessage;
+  static deserializeBinaryFromReader(message: RemoveTopicMessage, reader: jspb.BinaryReader): RemoveTopicMessage;
+}
+
+export namespace RemoveTopicMessage {
+  export type AsObject = {
+    type: WorldCommMessageType,
+    time: number,
+    topic: string,
+  }
+}
+
+export class TopicMessage extends jspb.Message {
+  getType(): WorldCommMessageType;
+  setType(value: WorldCommMessageType): void;
+
+  getTime(): number;
+  setTime(value: number): void;
+
+  getTopic(): string;
+  setTopic(value: string): void;
+
+  getAlias(): string;
+  setAlias(value: string): void;
+
+  getBody(): Uint8Array | string;
+  getBody_asU8(): Uint8Array;
+  getBody_asB64(): string;
+  setBody(value: Uint8Array | string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): TopicMessage.AsObject;
+  static toObject(includeInstance: boolean, msg: TopicMessage): TopicMessage.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: TopicMessage, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): TopicMessage;
+  static deserializeBinaryFromReader(message: TopicMessage, reader: jspb.BinaryReader): TopicMessage;
+}
+
+export namespace TopicMessage {
+  export type AsObject = {
+    type: WorldCommMessageType,
+    time: number,
+    topic: string,
+    alias: string,
+    body: Uint8Array | string,
+  }
+}
+
+export class PositionData extends jspb.Message {
+  getPositionX(): number;
+  setPositionX(value: number): void;
+
+  getPositionY(): number;
+  setPositionY(value: number): void;
+
+  getPositionZ(): number;
+  setPositionZ(value: number): void;
+
+  getRotationX(): number;
+  setRotationX(value: number): void;
+
+  getRotationY(): number;
+  setRotationY(value: number): void;
+
+  getRotationZ(): number;
+  setRotationZ(value: number): void;
+
+  getRotationW(): number;
+  setRotationW(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): PositionData.AsObject;
+  static toObject(includeInstance: boolean, msg: PositionData): PositionData.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: PositionData, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): PositionData;
+  static deserializeBinaryFromReader(message: PositionData, reader: jspb.BinaryReader): PositionData;
+}
+
+export namespace PositionData {
+  export type AsObject = {
+    positionX: number,
+    positionY: number,
+    positionZ: number,
+    rotationX: number,
+    rotationY: number,
+    rotationZ: number,
+    rotationW: number,
+  }
+}
+
+export class ProfileData extends jspb.Message {
+  getAvatarType(): string;
+  setAvatarType(value: string): void;
+
+  getDisplayName(): string;
+  setDisplayName(value: string): void;
+
+  getPublicKey(): string;
+  setPublicKey(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ProfileData.AsObject;
+  static toObject(includeInstance: boolean, msg: ProfileData): ProfileData.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ProfileData, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ProfileData;
+  static deserializeBinaryFromReader(message: ProfileData, reader: jspb.BinaryReader): ProfileData;
+}
+
+export namespace ProfileData {
+  export type AsObject = {
+    avatarType: string,
+    displayName: string,
+    publicKey: string,
+  }
+}
+
+export class ChatData extends jspb.Message {
+  getMessageId(): string;
+  setMessageId(value: string): void;
+
+  getText(): string;
+  setText(value: string): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ChatData.AsObject;
+  static toObject(includeInstance: boolean, msg: ChatData): ChatData.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ChatData, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ChatData;
+  static deserializeBinaryFromReader(message: ChatData, reader: jspb.BinaryReader): ChatData;
+}
+
+export namespace ChatData {
+  export type AsObject = {
+    messageId: string,
+    text: string,
+  }
+}
+
 export enum WorldCommMessageType {
   UNKNOWN_MESSAGE_TYPE = 0,
-  POSITION = 2,
-  CHAT = 3,
-  CLIENT_DISCONNECTED_FROM_SERVER = 4,
-  PROFILE = 5,
-  CLOCK_SKEW_DETECTED = 6,
-  PING = 8,
+  PING = 1,
+  ADD_TOPIC = 2,
+  REMOVE_TOPIC = 3,
+  TOPIC = 4,
 }
 
