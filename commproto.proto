@@ -1,0 +1,94 @@
+syntax = "proto3";
+
+enum MessageType {
+  UNKNOWN_MESSAGE_TYPE = 0;
+  WELCOME_SERVER = 1;
+  WELCOME_CLIENT = 2;
+  CONNECT = 3;
+  WEBRTC_SUPPORTED = 4;
+  WEBRTC_OFFER = 5;
+  WEBRTC_ANSWER = 6;
+  WEBRTC_ICE_CANDIDATE = 7;
+  PING = 8;
+  ADD_TOPIC = 9;
+  REMOVE_TOPIC = 10;
+  TOPIC = 11;
+}
+
+// NOTE: coordination messsages
+
+message CoordinatorMessage {
+    MessageType type = 1;
+}
+
+message WelcomeServerMessage {
+    MessageType type = 1;
+    string alias = 2;
+    repeated string peers = 3;
+}
+
+message WelcomeClientMessage {
+    MessageType type = 1;
+    string alias = 2;
+}
+
+message ConnectMessage {
+    MessageType type = 1;
+    string toAlias = 2;
+}
+
+message WebRtcMessage {
+    MessageType type = 1;
+    string alias = 2;
+    string toAlias = 3;
+    string sdp = 4;
+}
+
+// NOTE: world comm messsages
+
+message WorldCommMessage {
+    MessageType type = 1;
+    double time = 2;
+}
+
+message PingMessage {
+    MessageType type = 1;
+    double time = 2;
+}
+
+message ChangeTopicMessage {
+    MessageType type = 1;
+    double time = 2;
+    string topic = 3;
+}
+
+message TopicMessage {
+    MessageType type = 1;
+    double time = 2;
+    string topic = 3;
+    string alias = 4;
+    bytes body = 5;
+}
+
+// NOTE: serialization data
+
+message PositionData {
+    float position_x = 1;
+    float position_y = 2;
+    float position_z = 3;
+    float rotation_x = 4;
+    float rotation_y = 5;
+    float rotation_z = 6;
+    float rotation_w = 7;
+}
+
+message ProfileData {
+    string avatar_type = 1;
+    string display_name = 2;
+    string public_key = 3;
+}
+
+message ChatData {
+    string message_id = 1;
+    string text = 2;
+}
