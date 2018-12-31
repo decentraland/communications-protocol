@@ -991,8 +991,7 @@ proto.WorldCommMessage.prototype.toObject = function(opt_includeInstance) {
  */
 proto.WorldCommMessage.toObject = function(includeInstance, msg) {
   var f, obj = {
-    type: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    time: +jspb.Message.getFieldWithDefault(msg, 2, 0.0)
+    type: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
 
   if (includeInstance) {
@@ -1033,10 +1032,6 @@ proto.WorldCommMessage.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {!proto.MessageType} */ (reader.readEnum());
       msg.setType(value);
       break;
-    case 2:
-      var value = /** @type {number} */ (reader.readDouble());
-      msg.setTime(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -1073,13 +1068,6 @@ proto.WorldCommMessage.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getTime();
-  if (f !== 0.0) {
-    writer.writeDouble(
-      2,
-      f
-    );
-  }
 };
 
 
@@ -1095,21 +1083,6 @@ proto.WorldCommMessage.prototype.getType = function() {
 /** @param {!proto.MessageType} value */
 proto.WorldCommMessage.prototype.setType = function(value) {
   jspb.Message.setProto3EnumField(this, 1, value);
-};
-
-
-/**
- * optional double time = 2;
- * @return {number}
- */
-proto.WorldCommMessage.prototype.getTime = function() {
-  return /** @type {number} */ (+jspb.Message.getFieldWithDefault(this, 2, 0.0));
-};
-
-
-/** @param {number} value */
-proto.WorldCommMessage.prototype.setTime = function(value) {
-  jspb.Message.setProto3FloatField(this, 2, value);
 };
 
 
@@ -1330,8 +1303,7 @@ proto.ChangeTopicMessage.prototype.toObject = function(opt_includeInstance) {
 proto.ChangeTopicMessage.toObject = function(includeInstance, msg) {
   var f, obj = {
     type: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    time: +jspb.Message.getFieldWithDefault(msg, 2, 0.0),
-    topic: jspb.Message.getFieldWithDefault(msg, 3, "")
+    topic: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -1373,10 +1345,6 @@ proto.ChangeTopicMessage.deserializeBinaryFromReader = function(msg, reader) {
       msg.setType(value);
       break;
     case 2:
-      var value = /** @type {number} */ (reader.readDouble());
-      msg.setTime(value);
-      break;
-    case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.setTopic(value);
       break;
@@ -1416,17 +1384,10 @@ proto.ChangeTopicMessage.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getTime();
-  if (f !== 0.0) {
-    writer.writeDouble(
-      2,
-      f
-    );
-  }
   f = message.getTopic();
   if (f.length > 0) {
     writer.writeString(
-      3,
+      2,
       f
     );
   }
@@ -1449,32 +1410,17 @@ proto.ChangeTopicMessage.prototype.setType = function(value) {
 
 
 /**
- * optional double time = 2;
- * @return {number}
- */
-proto.ChangeTopicMessage.prototype.getTime = function() {
-  return /** @type {number} */ (+jspb.Message.getFieldWithDefault(this, 2, 0.0));
-};
-
-
-/** @param {number} value */
-proto.ChangeTopicMessage.prototype.setTime = function(value) {
-  jspb.Message.setProto3FloatField(this, 2, value);
-};
-
-
-/**
- * optional string topic = 3;
+ * optional string topic = 2;
  * @return {string}
  */
 proto.ChangeTopicMessage.prototype.getTopic = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /** @param {string} value */
 proto.ChangeTopicMessage.prototype.setTopic = function(value) {
-  jspb.Message.setProto3StringField(this, 3, value);
+  jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
@@ -1526,7 +1472,6 @@ proto.TopicMessage.prototype.toObject = function(opt_includeInstance) {
 proto.TopicMessage.toObject = function(includeInstance, msg) {
   var f, obj = {
     type: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    time: +jspb.Message.getFieldWithDefault(msg, 2, 0.0),
     topic: jspb.Message.getFieldWithDefault(msg, 3, ""),
     alias: jspb.Message.getFieldWithDefault(msg, 4, ""),
     body: msg.getBody_asB64()
@@ -1569,10 +1514,6 @@ proto.TopicMessage.deserializeBinaryFromReader = function(msg, reader) {
     case 1:
       var value = /** @type {!proto.MessageType} */ (reader.readEnum());
       msg.setType(value);
-      break;
-    case 2:
-      var value = /** @type {number} */ (reader.readDouble());
-      msg.setTime(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
@@ -1622,13 +1563,6 @@ proto.TopicMessage.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getTime();
-  if (f !== 0.0) {
-    writer.writeDouble(
-      2,
-      f
-    );
-  }
   f = message.getTopic();
   if (f.length > 0) {
     writer.writeString(
@@ -1665,21 +1599,6 @@ proto.TopicMessage.prototype.getType = function() {
 /** @param {!proto.MessageType} value */
 proto.TopicMessage.prototype.setType = function(value) {
   jspb.Message.setProto3EnumField(this, 1, value);
-};
-
-
-/**
- * optional double time = 2;
- * @return {number}
- */
-proto.TopicMessage.prototype.getTime = function() {
-  return /** @type {number} */ (+jspb.Message.getFieldWithDefault(this, 2, 0.0));
-};
-
-
-/** @param {number} value */
-proto.TopicMessage.prototype.setTime = function(value) {
-  jspb.Message.setProto3FloatField(this, 2, value);
 };
 
 
@@ -1799,13 +1718,14 @@ proto.PositionData.prototype.toObject = function(opt_includeInstance) {
  */
 proto.PositionData.toObject = function(includeInstance, msg) {
   var f, obj = {
-    positionX: +jspb.Message.getFieldWithDefault(msg, 1, 0.0),
-    positionY: +jspb.Message.getFieldWithDefault(msg, 2, 0.0),
-    positionZ: +jspb.Message.getFieldWithDefault(msg, 3, 0.0),
-    rotationX: +jspb.Message.getFieldWithDefault(msg, 4, 0.0),
-    rotationY: +jspb.Message.getFieldWithDefault(msg, 5, 0.0),
-    rotationZ: +jspb.Message.getFieldWithDefault(msg, 6, 0.0),
-    rotationW: +jspb.Message.getFieldWithDefault(msg, 7, 0.0)
+    time: +jspb.Message.getFieldWithDefault(msg, 1, 0.0),
+    positionX: +jspb.Message.getFieldWithDefault(msg, 2, 0.0),
+    positionY: +jspb.Message.getFieldWithDefault(msg, 3, 0.0),
+    positionZ: +jspb.Message.getFieldWithDefault(msg, 4, 0.0),
+    rotationX: +jspb.Message.getFieldWithDefault(msg, 5, 0.0),
+    rotationY: +jspb.Message.getFieldWithDefault(msg, 6, 0.0),
+    rotationZ: +jspb.Message.getFieldWithDefault(msg, 7, 0.0),
+    rotationW: +jspb.Message.getFieldWithDefault(msg, 8, 0.0)
   };
 
   if (includeInstance) {
@@ -1843,30 +1763,34 @@ proto.PositionData.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {number} */ (reader.readFloat());
-      msg.setPositionX(value);
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setTime(value);
       break;
     case 2:
       var value = /** @type {number} */ (reader.readFloat());
-      msg.setPositionY(value);
+      msg.setPositionX(value);
       break;
     case 3:
       var value = /** @type {number} */ (reader.readFloat());
-      msg.setPositionZ(value);
+      msg.setPositionY(value);
       break;
     case 4:
       var value = /** @type {number} */ (reader.readFloat());
-      msg.setRotationX(value);
+      msg.setPositionZ(value);
       break;
     case 5:
       var value = /** @type {number} */ (reader.readFloat());
-      msg.setRotationY(value);
+      msg.setRotationX(value);
       break;
     case 6:
       var value = /** @type {number} */ (reader.readFloat());
-      msg.setRotationZ(value);
+      msg.setRotationY(value);
       break;
     case 7:
+      var value = /** @type {number} */ (reader.readFloat());
+      msg.setRotationZ(value);
+      break;
+    case 8:
       var value = /** @type {number} */ (reader.readFloat());
       msg.setRotationW(value);
       break;
@@ -1899,52 +1823,59 @@ proto.PositionData.prototype.serializeBinary = function() {
  */
 proto.PositionData.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getPositionX();
+  f = message.getTime();
   if (f !== 0.0) {
-    writer.writeFloat(
+    writer.writeDouble(
       1,
       f
     );
   }
-  f = message.getPositionY();
+  f = message.getPositionX();
   if (f !== 0.0) {
     writer.writeFloat(
       2,
       f
     );
   }
-  f = message.getPositionZ();
+  f = message.getPositionY();
   if (f !== 0.0) {
     writer.writeFloat(
       3,
       f
     );
   }
-  f = message.getRotationX();
+  f = message.getPositionZ();
   if (f !== 0.0) {
     writer.writeFloat(
       4,
       f
     );
   }
-  f = message.getRotationY();
+  f = message.getRotationX();
   if (f !== 0.0) {
     writer.writeFloat(
       5,
       f
     );
   }
-  f = message.getRotationZ();
+  f = message.getRotationY();
   if (f !== 0.0) {
     writer.writeFloat(
       6,
       f
     );
   }
-  f = message.getRotationW();
+  f = message.getRotationZ();
   if (f !== 0.0) {
     writer.writeFloat(
       7,
+      f
+    );
+  }
+  f = message.getRotationW();
+  if (f !== 0.0) {
+    writer.writeFloat(
+      8,
       f
     );
   }
@@ -1952,107 +1883,122 @@ proto.PositionData.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * optional float position_x = 1;
+ * optional double time = 1;
  * @return {number}
  */
-proto.PositionData.prototype.getPositionX = function() {
+proto.PositionData.prototype.getTime = function() {
   return /** @type {number} */ (+jspb.Message.getFieldWithDefault(this, 1, 0.0));
 };
 
 
 /** @param {number} value */
-proto.PositionData.prototype.setPositionX = function(value) {
+proto.PositionData.prototype.setTime = function(value) {
   jspb.Message.setProto3FloatField(this, 1, value);
 };
 
 
 /**
- * optional float position_y = 2;
+ * optional float position_x = 2;
  * @return {number}
  */
-proto.PositionData.prototype.getPositionY = function() {
+proto.PositionData.prototype.getPositionX = function() {
   return /** @type {number} */ (+jspb.Message.getFieldWithDefault(this, 2, 0.0));
 };
 
 
 /** @param {number} value */
-proto.PositionData.prototype.setPositionY = function(value) {
+proto.PositionData.prototype.setPositionX = function(value) {
   jspb.Message.setProto3FloatField(this, 2, value);
 };
 
 
 /**
- * optional float position_z = 3;
+ * optional float position_y = 3;
  * @return {number}
  */
-proto.PositionData.prototype.getPositionZ = function() {
+proto.PositionData.prototype.getPositionY = function() {
   return /** @type {number} */ (+jspb.Message.getFieldWithDefault(this, 3, 0.0));
 };
 
 
 /** @param {number} value */
-proto.PositionData.prototype.setPositionZ = function(value) {
+proto.PositionData.prototype.setPositionY = function(value) {
   jspb.Message.setProto3FloatField(this, 3, value);
 };
 
 
 /**
- * optional float rotation_x = 4;
+ * optional float position_z = 4;
  * @return {number}
  */
-proto.PositionData.prototype.getRotationX = function() {
+proto.PositionData.prototype.getPositionZ = function() {
   return /** @type {number} */ (+jspb.Message.getFieldWithDefault(this, 4, 0.0));
 };
 
 
 /** @param {number} value */
-proto.PositionData.prototype.setRotationX = function(value) {
+proto.PositionData.prototype.setPositionZ = function(value) {
   jspb.Message.setProto3FloatField(this, 4, value);
 };
 
 
 /**
- * optional float rotation_y = 5;
+ * optional float rotation_x = 5;
  * @return {number}
  */
-proto.PositionData.prototype.getRotationY = function() {
+proto.PositionData.prototype.getRotationX = function() {
   return /** @type {number} */ (+jspb.Message.getFieldWithDefault(this, 5, 0.0));
 };
 
 
 /** @param {number} value */
-proto.PositionData.prototype.setRotationY = function(value) {
+proto.PositionData.prototype.setRotationX = function(value) {
   jspb.Message.setProto3FloatField(this, 5, value);
 };
 
 
 /**
- * optional float rotation_z = 6;
+ * optional float rotation_y = 6;
  * @return {number}
  */
-proto.PositionData.prototype.getRotationZ = function() {
+proto.PositionData.prototype.getRotationY = function() {
   return /** @type {number} */ (+jspb.Message.getFieldWithDefault(this, 6, 0.0));
 };
 
 
 /** @param {number} value */
-proto.PositionData.prototype.setRotationZ = function(value) {
+proto.PositionData.prototype.setRotationY = function(value) {
   jspb.Message.setProto3FloatField(this, 6, value);
 };
 
 
 /**
- * optional float rotation_w = 7;
+ * optional float rotation_z = 7;
  * @return {number}
  */
-proto.PositionData.prototype.getRotationW = function() {
+proto.PositionData.prototype.getRotationZ = function() {
   return /** @type {number} */ (+jspb.Message.getFieldWithDefault(this, 7, 0.0));
 };
 
 
 /** @param {number} value */
-proto.PositionData.prototype.setRotationW = function(value) {
+proto.PositionData.prototype.setRotationZ = function(value) {
   jspb.Message.setProto3FloatField(this, 7, value);
+};
+
+
+/**
+ * optional float rotation_w = 8;
+ * @return {number}
+ */
+proto.PositionData.prototype.getRotationW = function() {
+  return /** @type {number} */ (+jspb.Message.getFieldWithDefault(this, 8, 0.0));
+};
+
+
+/** @param {number} value */
+proto.PositionData.prototype.setRotationW = function(value) {
+  jspb.Message.setProto3FloatField(this, 8, value);
 };
 
 
@@ -2103,9 +2049,10 @@ proto.ProfileData.prototype.toObject = function(opt_includeInstance) {
  */
 proto.ProfileData.toObject = function(includeInstance, msg) {
   var f, obj = {
-    avatarType: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    displayName: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    publicKey: jspb.Message.getFieldWithDefault(msg, 3, "")
+    time: +jspb.Message.getFieldWithDefault(msg, 1, 0.0),
+    avatarType: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    displayName: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    publicKey: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -2143,14 +2090,18 @@ proto.ProfileData.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setAvatarType(value);
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setTime(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setDisplayName(value);
+      msg.setAvatarType(value);
       break;
     case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setDisplayName(value);
+      break;
+    case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setPublicKey(value);
       break;
@@ -2183,24 +2134,31 @@ proto.ProfileData.prototype.serializeBinary = function() {
  */
 proto.ProfileData.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAvatarType();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getTime();
+  if (f !== 0.0) {
+    writer.writeDouble(
       1,
       f
     );
   }
-  f = message.getDisplayName();
+  f = message.getAvatarType();
   if (f.length > 0) {
     writer.writeString(
       2,
       f
     );
   }
-  f = message.getPublicKey();
+  f = message.getDisplayName();
   if (f.length > 0) {
     writer.writeString(
       3,
+      f
+    );
+  }
+  f = message.getPublicKey();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
       f
     );
   }
@@ -2208,47 +2166,62 @@ proto.ProfileData.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * optional string avatar_type = 1;
- * @return {string}
+ * optional double time = 1;
+ * @return {number}
  */
-proto.ProfileData.prototype.getAvatarType = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+proto.ProfileData.prototype.getTime = function() {
+  return /** @type {number} */ (+jspb.Message.getFieldWithDefault(this, 1, 0.0));
 };
 
 
-/** @param {string} value */
-proto.ProfileData.prototype.setAvatarType = function(value) {
-  jspb.Message.setProto3StringField(this, 1, value);
+/** @param {number} value */
+proto.ProfileData.prototype.setTime = function(value) {
+  jspb.Message.setProto3FloatField(this, 1, value);
 };
 
 
 /**
- * optional string display_name = 2;
+ * optional string avatar_type = 2;
  * @return {string}
  */
-proto.ProfileData.prototype.getDisplayName = function() {
+proto.ProfileData.prototype.getAvatarType = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /** @param {string} value */
-proto.ProfileData.prototype.setDisplayName = function(value) {
+proto.ProfileData.prototype.setAvatarType = function(value) {
   jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
- * optional string public_key = 3;
+ * optional string display_name = 3;
  * @return {string}
  */
-proto.ProfileData.prototype.getPublicKey = function() {
+proto.ProfileData.prototype.getDisplayName = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
 /** @param {string} value */
-proto.ProfileData.prototype.setPublicKey = function(value) {
+proto.ProfileData.prototype.setDisplayName = function(value) {
   jspb.Message.setProto3StringField(this, 3, value);
+};
+
+
+/**
+ * optional string public_key = 4;
+ * @return {string}
+ */
+proto.ProfileData.prototype.getPublicKey = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/** @param {string} value */
+proto.ProfileData.prototype.setPublicKey = function(value) {
+  jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
@@ -2299,8 +2272,9 @@ proto.ChatData.prototype.toObject = function(opt_includeInstance) {
  */
 proto.ChatData.toObject = function(includeInstance, msg) {
   var f, obj = {
-    messageId: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    text: jspb.Message.getFieldWithDefault(msg, 2, "")
+    time: +jspb.Message.getFieldWithDefault(msg, 1, 0.0),
+    messageId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    text: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -2338,10 +2312,14 @@ proto.ChatData.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setTime(value);
+      break;
+    case 2:
       var value = /** @type {string} */ (reader.readString());
       msg.setMessageId(value);
       break;
-    case 2:
+    case 3:
       var value = /** @type {string} */ (reader.readString());
       msg.setText(value);
       break;
@@ -2374,50 +2352,72 @@ proto.ChatData.prototype.serializeBinary = function() {
  */
 proto.ChatData.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getMessageId();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getTime();
+  if (f !== 0.0) {
+    writer.writeDouble(
       1,
       f
     );
   }
-  f = message.getText();
+  f = message.getMessageId();
   if (f.length > 0) {
     writer.writeString(
       2,
       f
     );
   }
+  f = message.getText();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
+      f
+    );
+  }
 };
 
 
 /**
- * optional string message_id = 1;
+ * optional double time = 1;
+ * @return {number}
+ */
+proto.ChatData.prototype.getTime = function() {
+  return /** @type {number} */ (+jspb.Message.getFieldWithDefault(this, 1, 0.0));
+};
+
+
+/** @param {number} value */
+proto.ChatData.prototype.setTime = function(value) {
+  jspb.Message.setProto3FloatField(this, 1, value);
+};
+
+
+/**
+ * optional string message_id = 2;
  * @return {string}
  */
 proto.ChatData.prototype.getMessageId = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/** @param {string} value */
-proto.ChatData.prototype.setMessageId = function(value) {
-  jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-/**
- * optional string text = 2;
- * @return {string}
- */
-proto.ChatData.prototype.getText = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /** @param {string} value */
-proto.ChatData.prototype.setText = function(value) {
+proto.ChatData.prototype.setMessageId = function(value) {
   jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional string text = 3;
+ * @return {string}
+ */
+proto.ChatData.prototype.getText = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/** @param {string} value */
+proto.ChatData.prototype.setText = function(value) {
+  jspb.Message.setProto3StringField(this, 3, value);
 };
 
 

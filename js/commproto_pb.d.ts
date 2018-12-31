@@ -137,9 +137,6 @@ export class WorldCommMessage extends jspb.Message {
   getType(): MessageType;
   setType(value: MessageType): void;
 
-  getTime(): number;
-  setTime(value: number): void;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): WorldCommMessage.AsObject;
   static toObject(includeInstance: boolean, msg: WorldCommMessage): WorldCommMessage.AsObject;
@@ -153,7 +150,6 @@ export class WorldCommMessage extends jspb.Message {
 export namespace WorldCommMessage {
   export type AsObject = {
     type: MessageType,
-    time: number,
   }
 }
 
@@ -185,9 +181,6 @@ export class ChangeTopicMessage extends jspb.Message {
   getType(): MessageType;
   setType(value: MessageType): void;
 
-  getTime(): number;
-  setTime(value: number): void;
-
   getTopic(): string;
   setTopic(value: string): void;
 
@@ -204,7 +197,6 @@ export class ChangeTopicMessage extends jspb.Message {
 export namespace ChangeTopicMessage {
   export type AsObject = {
     type: MessageType,
-    time: number,
     topic: string,
   }
 }
@@ -212,9 +204,6 @@ export namespace ChangeTopicMessage {
 export class TopicMessage extends jspb.Message {
   getType(): MessageType;
   setType(value: MessageType): void;
-
-  getTime(): number;
-  setTime(value: number): void;
 
   getTopic(): string;
   setTopic(value: string): void;
@@ -240,7 +229,6 @@ export class TopicMessage extends jspb.Message {
 export namespace TopicMessage {
   export type AsObject = {
     type: MessageType,
-    time: number,
     topic: string,
     alias: string,
     body: Uint8Array | string,
@@ -248,6 +236,9 @@ export namespace TopicMessage {
 }
 
 export class PositionData extends jspb.Message {
+  getTime(): number;
+  setTime(value: number): void;
+
   getPositionX(): number;
   setPositionX(value: number): void;
 
@@ -281,6 +272,7 @@ export class PositionData extends jspb.Message {
 
 export namespace PositionData {
   export type AsObject = {
+    time: number,
     positionX: number,
     positionY: number,
     positionZ: number,
@@ -292,6 +284,9 @@ export namespace PositionData {
 }
 
 export class ProfileData extends jspb.Message {
+  getTime(): number;
+  setTime(value: number): void;
+
   getAvatarType(): string;
   setAvatarType(value: string): void;
 
@@ -313,6 +308,7 @@ export class ProfileData extends jspb.Message {
 
 export namespace ProfileData {
   export type AsObject = {
+    time: number,
     avatarType: string,
     displayName: string,
     publicKey: string,
@@ -320,6 +316,9 @@ export namespace ProfileData {
 }
 
 export class ChatData extends jspb.Message {
+  getTime(): number;
+  setTime(value: number): void;
+
   getMessageId(): string;
   setMessageId(value: string): void;
 
@@ -338,6 +337,7 @@ export class ChatData extends jspb.Message {
 
 export namespace ChatData {
   export type AsObject = {
+    time: number,
     messageId: string,
     text: string,
   }
